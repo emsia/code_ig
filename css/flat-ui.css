@@ -435,7 +435,7 @@ a {
   -webkit-backface-visibility: hidden;
 }
 a:hover {
-  color: #1abc9c;
+  color: #F39C12;
   text-decoration: none;
 }
 h1 {
@@ -737,7 +737,7 @@ h6 {
 }
 .navbar .brand:hover,
 .navbar .brand:focus {
-  color: #c0c0c0;
+  color: #F39C12;
   text-decoration:none;
 }
 .navbar .brand[class*="fui-"] {
@@ -807,7 +807,7 @@ h6 {
 }
 .navbar .nav > li > a:hover,
 .navbar .nav > li > a:focus {
-  color: #1abc9c;
+  color: #F39C12;
 }
 .navbar .nav > li > a[class*="fui-"] {
   font-size: 24px;
@@ -2901,7 +2901,8 @@ textarea[class*="span"] {
 .todo li.todo-done {
   background: transparent url(../images/todo/done.png) 92% center no-repeat;
   background-size: 20px 20px;
-  color: #1abc9c;
+  color: #F39C12;
+  font-size: 17px;
 }
 .todo li.todo-done .todo-name {
   color: #1abc9c;

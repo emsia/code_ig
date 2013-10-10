@@ -72,13 +72,13 @@
 .sidebar-content {
   padding-top: 1px;
   overflow: hidden;
-  color: #6d6e69;
+  color: white;
   font-size: 17px;
   margin: 1px 0 3px;
 }
 
 .sidebar li.active {
-  background: #e7cd4d;
+  background: #2ECC71;
   cursor: default;
   color: #6d6e69;
 }
@@ -100,8 +100,8 @@
   transition: background-color 200ms linear;
 }
 
-.page-content {
-  border-top: 7px solid #f1c40f;
+.topliner {
+  border-top: 7px solid #F39C12;
 }
 
 .content {
@@ -186,6 +186,7 @@ color: #ffffff;
   float: left;
   height: 40px;
   margin-right: 15px;
+  color: white;
 }
 
 .todo li {
@@ -193,8 +194,8 @@ color: #ffffff;
 }
 
 .todo li.todo-done {
-  background: transparent url(../../app_auth/images/play-2x.png) 92% center no-repeat;
   background-size: 20px 20px;
+  color: #F39C12;
 }
 
 .sidebar-link {
