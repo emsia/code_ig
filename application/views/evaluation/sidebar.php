@@ -14,8 +14,9 @@
 
 			<li <?php if (   !empty($active_nav) && $active_nav == 'CLASSES'){ ?> class="todo-done" <?php }?>>
 				<a style="text-decoration: none" href="{% url 'classes:classes' %}">
-					<div class="todo-icon fui-lock"></div>
+					
 					<div class="todo-content">
+						<div class="todo-icon fui-lock"></div>
 						<h4 class="todo-name">
 							BEHAVIORAL COMPETENCY
 						</h4>
