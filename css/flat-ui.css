@@ -2889,6 +2889,11 @@ textarea[class*="span"] {
   transition: 0.25s;
   -webkit-backface-visibility: hidden;
 }
+.todo li:hover {
+  background: #34495e url(../images/todo/todo.png) 92% center no-repeat;
+  color: #F39C12;
+}
+  
 .todo li:first-child {
   margin-top: 0;
 }
@@ -2959,6 +2964,11 @@ input.todo-search-field.placeholder {
 }
 .todo-name {
   color: #ffffff;
+  font-size: 17px;
+  margin: 1px 0 3px;
+}
+.todo-name:hover {
+  color: #F39C12;
   font-size: 17px;
   margin: 1px 0 3px;
 }
