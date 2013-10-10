@@ -29,7 +29,17 @@
 							<li>
 								<a href="/help/">Help</a>
 							</li>
-							
+							<li class="active dropdown">
+								<a href="#" class="dropdown-toggle"><img class="avatar" src="{{ MEDIA_URL }}{{ avatar }}" />
+									{{ user.first_name }} {{ user.last_name }}
+									<b class="caret"></b>
+								</a>
+								<ul>
+									<li><a href="{% url 'auth:profile' %}">My Profile</a></li>
+									<li><a href="{% url 'auth:edit_profile' %}">Settings</a></li>
+									<li><a href="{% url 'auth:user_logout' %}">Logout</a></li>
+								</ul>
+							</li>
 						</ul>
 					</div>
 				</div>

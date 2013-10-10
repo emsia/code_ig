@@ -572,7 +572,7 @@ h6 {
 }
 .btn.btn-danger:hover,
 .btn.btn-danger:focus,
-.btn-group:focus .btn.btn-danger.dropdown-toggle {
+.btn-group:focus .btn.btn-danger. {
   background-color: #ec7063;
 }
 .btn.btn-danger:active,
@@ -1002,7 +1002,7 @@ h6 {
   -webkit-font-smoothing: subpixel-antialiased;
 }
 .navbar.navbar-inverse .nav li.dropdown.open > .dropdown-toggle {
-  background-color: #1abc9c;
+  background-color: white;
   border-bottom-color: #16a085;
   color: #ffffff;
 }
@@ -1030,8 +1030,8 @@ h6 {
 }
 .navbar .nav li.dropdown > .dropdown-toggle:hover .caret,
 .navbar .nav li.dropdown > .dropdown-toggle:focus .caret {
-  border-bottom-color: #1abc9c;
-  border-top-color: #1abc9c;
+  border-bottom-color: #F39C12;
+  border-top-color: #F39C12;
 }
 .navbar .nav li.dropdown > .dropdown-toggle .caret {
   border-left-width: 6px;
