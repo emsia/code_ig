@@ -2904,13 +2904,18 @@ textarea[class*="span"] {
   padding-bottom: 18px;
 }
 .todo li.todo-done {
-  background: transparent url(../images/todo/done.png) 92% center no-repeat;
   background-size: 20px 20px;
   color: #F39C12;
-  font-size: 17px;
+  font-size: 20px;
+  font-style: bold;
 }
 .todo li.todo-done .todo-name {
-  color: #1abc9c;
+  color: #F39C12;
+  font-size: 20px;
+  font-style: bold;
+}
+.todo li.todo-done .todo-icon {
+  color: #F39C12;
 }
 .todo-search {
   position: relative;
