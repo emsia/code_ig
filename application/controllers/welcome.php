@@ -18,14 +18,10 @@ class Welcome extends CI_Controller {
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index()
-	{
-		$this->load->helper("url");
-		$data['title'] = "Evaluation Form";
-		$this->load->view('evaluation/evalFormHead', $data);
-		$this->load->view('evaluation/evalForm', $data);
-		$this->load->view('evaluation/evalFormfooter');
+	{	
+		$data['title'] = "eUP Evaluation Login";
+		$this->load->view('templates/head', $data);
+		$this->load->view('templates/login');
+		$this->load->view('templates/footer');
 	}
 }
-
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
