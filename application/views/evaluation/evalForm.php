@@ -1,5 +1,5 @@
 <div class="row-fluid">
-	<?php include('sidebar.php')?>
+	<?php include_once($_SERVER['DOCUMENT_ROOT'] .'/code_ig/application/views/templates/sidebar.php')?>
 	<div class="span9">
 		<div class="topliner">
 			<div class="content">

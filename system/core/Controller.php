@@ -57,6 +57,16 @@ class CI_Controller {
 	{
 		return self::$instance;
 	}
+	
+	public function islogged(){
+		$user = $this->session->userdata('username');
+		$sess = $this->session->userdata('logged');
+		$role = $this->session->userdata('role');
+		if(empty($user) || empty($sess) ){
+			return false;
+		}
+		return $role;
+	}
 }
 // END Controller class
 

@@ -39,7 +39,6 @@
 }
 
 .sidebar {
-  background-color: #dfdfd7;
   left:0;
   min-height: 100%;
   position: relative;
@@ -71,16 +70,21 @@
 }
 .sidebar-content {
   padding-top: 1px;
-  overflow: hidden;
   color: white;
   font-size: 17px;
   margin: 1px 0 3px;
 }
 
 .sidebar li.active {
-  background: #2ECC71;
+  background: #e8d46f;
   cursor: default;
   color: #6d6e69;
+}
+
+.sidebar li.inactive {
+  background: #F39C12;
+  cursor: default;
+  color: #E67E22;
 }
 
 .sidebar a:hover,
@@ -92,7 +96,7 @@
 }
 
 .sidebar li:hover {
-  background-color: #efe19b;
+  background-color: #e8d46f;
   -webkit-transition: background-color 200ms linear;
   -moz-transition: background-color 200ms linear;
   -o-transition: background-color 200ms linear;

@@ -39,6 +39,10 @@
 */
 
 $route['default_controller'] = "welcome";
+$route['home'] = 'answer/process';
+$route['answer/results'] = 'answer/results';
+$route['answer/FormEvaluate'] = 'answer/FormEvaluate';
+$route['answer/process'] = 'answer/process';
 $route['404_override'] = '';
 
 

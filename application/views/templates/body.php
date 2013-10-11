@@ -12,14 +12,14 @@
 								<a href="/help/">Help</a>
 							</li>
 							<li class="active dropdown">
-								<a href="#" class="dropdown-toggle"><img class="avatar" src="{{ MEDIA_URL }}{{ avatar }}" />
-									{{ user.first_name }} {{ user.last_name }}
+								<a href="#" class="dropdown-toggle"><img class="avatar" src="<?php echo base_url('images/icons/png/user.png'); ?>" />
+									<?php echo $lastname.", ".$firstname." ".$middle."."; ?>
 									<b class="caret"></b>
 								</a>
 								<ul>
 									<li><a href="{% url 'auth:profile' %}">My Profile</a></li>
 									<li><a href="{% url 'auth:edit_profile' %}">Settings</a></li>
-									<li><a href="{% url 'auth:user_logout' %}">Logout</a></li>
+									<li><a href="<?php echo base_url('index.php/welcome/logout');?>">Logout</a></li>
 								</ul>
 							</li>
 						</ul>
