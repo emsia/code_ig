@@ -476,7 +476,7 @@ a {
   -webkit-backface-visibility: hidden;
 }
 a:hover {
-  color: #2C3E50;
+  color: #F1C40F;
   text-decoration: none;
 }
 h1 {
@@ -1774,7 +1774,7 @@ textarea[class*="span"] {
 }
 .checkbox.checked .icons,
 .radio.checked .icons {
-  color: #1abc9c;
+  color: #F39C12;
 }
 .checkbox.checked .first-icon,
 .radio.checked .first-icon {
@@ -3621,7 +3621,7 @@ body.vjs-full-window {
   border-radius: 10px;
 }
 .login {
-  background: url(../images/icons/imac.png) 50% 50% no-repeat #F39C12;
+  background: #F39C12;
   height: 100%;
   width: 100%;
   position: absolute;

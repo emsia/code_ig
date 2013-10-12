@@ -4,13 +4,13 @@
 			<li <?php if (  !empty($active_nav) && $active_nav == 'PROCESS' ){?>class="active" <?php } else {?> class="inactive" <?php }?>>
 				<a style="text-decoration: none" href="<?php echo base_url('index.php/answer/process');?>">
 					<div class="sidebar-content">
-						<div class="sidebar-icon fui-chat"></div>
+						<div class="sidebar-icon fui-cmd"></div>
 							PROCESS
 					</div>
 				</a>
 			</li>
 
-			<li <?php if (   !empty($active_nav) && $active_nav == 'BEHAVIORAL'){ ?>class="active" <?php } else {?> class="inactive" <?php }?>>
+			<li <?php if (   !empty($active_nav) && $active_nav == 'ANSWERFORM'){ ?>class="active" <?php } else {?> class="inactive" <?php }?>>
 				<a style="text-decoration: none" href="<?php echo base_url('index.php/answer/FormEvaluate');?>">
 					<div class="sidebar-content">
 						<div class="sidebar-icon fui-lock"></div>

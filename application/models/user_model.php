@@ -1,7 +1,8 @@
 <?php
-class user_model extends CI_Model {
+class User_model extends CI_Model {
 	function __construct()
 	{
+		parent::__construct();
 		$this->load->database();
 	}
 	

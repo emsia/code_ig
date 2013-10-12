@@ -12,8 +12,7 @@
 				<li><a href="#check"> Who will Assess the Evaluation? </a></li>
 				<li><a href="#criteria">Criteria for Evaluation</a></li>
 				<li><a href="#Job">Critical Job Element Definitions</a></li>
-				<li><a href="#edit_profile">Editing Your Profile</a></li>
-				<li><a href="#change_pw">Changing Your Password</a></li>	
+				<li><a href="#comments">Comments</a></li>	
 			</ul>
 			</p>	
 			</div>
@@ -26,7 +25,7 @@
 				<li>Team Leaders and Deputy Team Leaders, will also be evaluated by other Team Leaders and Deputy Team Leaders.</li>
 				<li>All Team Leaders, Deputy Team Leaders and Personnel will be evaluated by the Director.</li>
 				<li>Personnel will be evaluated by their Team Leaders and the Director. </li>
-				<li>The personnel from training and Admin, IT Operations and Help Desk Officers will also be evaluated by the Director and all Personnel.</li>
+				<li>The personnel from Training and Admin, IT Operations and Help Desk Officers will also be evaluated by the Director and all Personnel.</li>
 			</ol>
 			<a href='#top'>Back To Top</a>
 			</p>
@@ -105,55 +104,92 @@
 					<li><a href="#Outstanding">Outstanding (5)</a></li>
 				</ul>
 				</p>
-			<a href='#top'>Critical Job Element Definitions</a>
+			<a href='#top'>Back To Top</a>
 			</div>	
 			<hr>					
 			<div id="poor">
 				<h2>Poor (1)</h2>
+				<p>Rarely exhibits the quality. Personnel barely perform job expectations due to unwillingness or not fit for the job. Characteristics may be:</p>
 				<ol>
-					<li>From anywhere in the site, point to your name at the upper right corner of the page then click 'My Profile'.</li>
-					<li>Edit the fields that you want to change.</li>
-					<li>Click the 'Save Changes' button at the bottom of the page.</li>
+					<li>Insubordination.</li>
+					<li>Negligence or carelessness.</li>
+					<li>Misuses and wastes company resources and time.</li>
+					<li>Loafs around.</li>
+					<li>Requires constant supervision and monitoring.</li>
+					<li>Cannot perform basic job requirements.</li>
+					<li>Unwilling to appropriately respond to job situations.</li>
+					<li>Intentionally and habitually tardy, slow and fails to report absences.</li>
+					<li>Avoids responsibility and accountability.</li>
 				</ol>
 			<a href='#Job'>Back To Critical Job Element Definitions</a>
 			</div>	
 			<hr>						
 			<div id="Needs">
 				<h2>Needs Improvement (2)</h2>
+				<p>Sometimes exhibits the quality. Personnel meet job expectations but do not perform well in unfamiliar situations.  A personnel may be willing to improve but will require close mentoring to reach satisfactory level. Characteristics may be:</p>
 				<ol>
-					<li>From anywhere in the site, point to your name at the upper right corner of the page then click 'My Profile'.</li>
-					<li>Enter your old password and new password on the spaces provided.</li>
-					<li>Click the 'Update Password' button at the bottom of the page to update your password or the 'Reset' button if you want to clear the fields and start all over again.</li>
-				</ol>
-			<a href='#Job'>Back To Critical Job Element Definitions</a>
-			</div>
-			<div id="Satisfactory">
-				<h2>Satisfactory (3)</h2>
-				<ol>
-					<li>From anywhere in the site, point to your name at the upper right corner of the page then click 'My Profile'.</li>
-					<li>Enter your old password and new password on the spaces provided.</li>
-					<li>Click the 'Update Password' button at the bottom of the page to update your password or the 'Reset' button if you want to clear the fields and start all over again.</li>
-				</ol>
-			<a href='#Job'>Back To Critical Job Element Definitions</a>
-			</div>
-			<div id="Very">
-				<h2>Very Satisfactory (4)</h2>
-				<ol>
-					<li>From anywhere in the site, point to your name at the upper right corner of the page then click 'My Profile'.</li>
-					<li>Enter your old password and new password on the spaces provided.</li>
-					<li>Click the 'Update Password' button at the bottom of the page to update your password or the 'Reset' button if you want to clear the fields and start all over again.</li>
-				</ol>
-			<a href='#Job'>Back To Critical Job Element Definitions</a>
-			</div>
-			<div id="Outstanding">
-				<h2>Outstanding (5)</h2>
-				<ol>
-					<li>From anywhere in the site, point to your name at the upper right corner of the page then click 'My Profile'.</li>
-					<li>Enter your old password and new password on the spaces provided.</li>
-					<li>Click the 'Update Password' button at the bottom of the page to update your password or the 'Reset' button if you want to clear the fields and start all over again.</li>
+					<li>Performance is inconsistent.</li>
+					<li>Rarely gives a satisfactory performance in unusual situations or conditions and is always hesitant to act on them.</li>
+					<li>Avoids responsibility and accountability.</li>
+					<li>Requires significant monitoring.</li>
+					<li>Cannot provide solutions beyond what is given.</li>
+					<li>Office conduct could do with some improvement.</li>
 				</ol>
 			<a href='#Job'>Back To Critical Job Element Definitions</a>
 			</div>
 			<hr>
+			<div id="Satisfactory">
+				<h2>Satisfactory (3)</h2>
+				<p>Generally exhibits the quality. Personnel do not require close monitoring for him/her to fulfill his/her job. Characteristics may be:</p>
+				<ol>
+					<li>Produces quality of work to meet and occasionally exceeds job expectations.</li>
+					<li>Able to communicate effectively regarding regular matters.</li>
+					<li>Accepts constructive criticism.</li>
+					<li>Continuously tries to improve work performance.</li>
+					<li>Occasionally contributes new ideas and is also open to the ideas of others.</li>
+					<li>Adheres to time and attendance rules.</li>
+					<li>Retains lessons learned from unfamiliar situations but will still need guidance when a different situation arises.</li>
+				</ol>
+			<a href='#Job'>Back To Critical Job Element Definitions</a>
+			</div>
+			<hr>
+			<div id="Very">
+				<h2>Very Satisfactory (4)</h2>
+				<p>Exhibits the quality. Personnel at this level exhibit all the characteristics of an average personnel but on a more dependable degree. Characteristics may be:</p>
+				<ol>
+					<li>Designs new techniques as requested, considering the concerns and suggestions of others.</li>
+					<li>Voluntarily suggests improvement on policies and procedures.</li>
+					<li>Can multitask with favorable results.</li>
+					<li>Can gather data and present them in a comprehensive manner.</li>
+					<li>Communicates effectively and able to express himself/herself concisely.</li>
+					<li>Occasionally exhibits leadership qualities.</li>
+					<li>Other personnel regularly consult him on matters regarding his field.</li>
+				</ol>
+			<a href='#Job'>Back To Critical Job Element Definitions</a>
+			</div>
+			<hr>
+			<div id="Outstanding">
+				<h2>Outstanding (5)</h2>
+				<p>Always exhibits the quality. A personnel at this level works with little or no supervision at all. Consistently exceeds expectations. Characteristics may be:</p>
+				<ol>
+					<li>Delights customers always.</li>
+					<li>Is an expert in his/her field.</li>
+					<li>Often suggests new policies and procedures.</li>
+					<li>Can multitask under heavy pressure with consistent favorable results.</li>
+					<li>Helps facilitate change in a positive manner with long-term results.</li>
+					<li>Communicates effectively with various personalities and fosters communication among people inside and outside the organization.</li>
+					<li>Is able to gather pertinent data from the right sources and can produce reliable reports from various statistics and information.  Able to interpret the data that can be used by the organization.</li>
+					<li>Exhibits leadership qualities.</li>
+					<li>Can mentor other personnel.</li>
+				</ol>
+			<a href='#Job'>Back To Critical Job Element Definitions</a>
+			</div>
+			<hr>
+			<div id="comments">
+				<img class="title-icons" src="<?php echo base_url('images/icons/png/Comment.png'); ?>">
+				<h2 class="title">Comments</h2>
+				<p>Comments are non-quantitative ratings done by the rater that may confirm or help in the improvement of performance.</p>				
+			<a href='#top'>Back To Top</a>
+			</div>
 
 </div></div></div>

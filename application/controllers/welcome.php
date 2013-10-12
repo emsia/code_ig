@@ -7,11 +7,13 @@ class Welcome extends CI_Controller {
 		parent::__construct();
 		$this->load->library(array('session', 'form_validation'));
 		$this->load->helper('url');
-		$this->load->model('user_model');
+		$this->load->model('User_model');
 	}
 	
 	public function index( $data = Null )
 	{	
+		if ( $this->islogged() )
+			redirect('http://localhost/code_ig/index.php/home');
 		$data['title'] = "eUP Performance Evaluation | Login";
 		$this->load->view('templates/head', $data);
 		$this->load->view('templates/login');
@@ -70,10 +72,16 @@ class Welcome extends CI_Controller {
 	
 	public function detals_of_users( ){
 		$username = $this->session->userdata('username');
-		$name = $this->user_model->getName($username);
+		$name = $this->User_model->getName($username);
 		$data['firstname'] = $name['firstname'];
 		$data['lastname'] = $name['lastname'];
 		$data['middle'] = $name['middle'];
 		return $data;
+	}
+
+	public function errors(){
+		$data['title'] = 'Page Not Found';
+		$this->load->view('templates/head', $data);
+		$this->load->view('templates/errors');
 	}
 }

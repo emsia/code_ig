@@ -65,7 +65,7 @@ class CI_Controller {
 		if(empty($user) || empty($sess) ){
 			return false;
 		}
-		return $role;
+		return $role + 1;
 	}
 }
 // END Controller class
