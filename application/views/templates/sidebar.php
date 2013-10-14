@@ -11,10 +11,10 @@
 			</li>
 
 			<li <?php if (   !empty($active_nav) && $active_nav == 'ANSWERFORM'){ ?>class="active" <?php } else {?> class="inactive" <?php }?>>
-				<a style="text-decoration: none" href="<?php echo base_url('index.php/answer/FormEvaluate');?>">
+				<a style="text-decoration: none" href="<?php echo base_url('index.php/answer/people');?>">
 					<div class="sidebar-content">
 						<div class="sidebar-icon fui-lock"></div>
-							ANSWER FORM
+							EVALUATE PERSONNEL
 					</div>
 				</a>
 			</li>

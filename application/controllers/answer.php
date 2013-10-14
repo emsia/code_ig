@@ -19,6 +19,16 @@ class Answer extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 	
+	public function people(){
+		$data = $this->getInfo();
+		$data['title'] = "eUP Performance Evaluation | Evaluate";
+		$data['active_nav'] = 'ANSWERFORM';
+		$this->load->view('templates/head', $data);
+		$this->load->view('templates/body');
+		$this->load->view('evaluation/personnel');
+		$this->load->view('templates/footer');
+	}
+
 	public function FormEvaluate( $data = Null ){
 		$temp = $data['errors'];
 		$data = $this->getInfo();
@@ -27,7 +37,7 @@ class Answer extends CI_Controller {
 		$data['active_nav'] = 'ANSWERFORM';
 		$this->load->view('templates/head', $data);
 		$this->load->view('templates/body');
-		$this->load->view('evaluation/evalForm');
+		$this->load->view('evaluation/evalForm');//evalForm
 		$this->load->view('templates/footer');
 	}
 	
