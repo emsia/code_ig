@@ -20,9 +20,10 @@
 				<div class="alert alert-error alert-block"><?php echo $errors; ?></div>
 			<?php }?>
 			<table class="table table-bordered">	
-				<tr>
+				<tr><center>
 					<p colspan="6"><b style="color:red">1</b>-POOR &nbsp; <b style="color:red">2</b>-NEEDS IMPROVEMENT &nbsp; <b style="color:red">3</b>-SATISFACTORY &nbsp; <b style="color:red">4</b>-VERY SATISFACTORY &nbsp; <b style="color:red">5</b>-OUTSTANDING</p>
-				</tr>
+				</center></tr>
+				<hr>
 			</table>
 
 				<?php echo form_open('answer/submitEvalForm', $class); ?>
@@ -33,11 +34,11 @@
 					<table class="table table-striped table-bordered">
 						<thead>
 							<tr>
-								<th>TITLE</th>
-								<th>QUESTIONS</th>
+								<th style='width: 20%'>TITLE</th>
+								<th style='width: 80%'>QUESTIONS</th>
 								<?php
 									for ($i = 1 ; $i <= 5; $i++){
-										echo "<th><center>".$i."</center></th>";
+										echo "<th style='width: 5%'><center>".$i."</center></th>";
 									}	
 								?>
 							</tr>
@@ -115,26 +116,26 @@
 								?>
 							</tr>
 						</tbody>
-					</table>
+					</table><br/>
 					<hr>
 
 					<table class="table table-bordered">	
-						<tr>
+						<tr><center>
 							<p colspan="6"><b style="color:red">1</b>-POOR &nbsp; <b style="color:red">2</b>-NEEDS IMPROVEMENT &nbsp; <b style="color:red">3</b>-SATISFACTORY &nbsp; <b style="color:red">4</b>-VERY SATISFACTORY &nbsp; <b style="color:red">5</b>-OUTSTANDING</p>
-						</tr>
+						</center></tr><hr>
 					</table>
-					<img class="title-icons" src="<?php echo base_url('images/icons/svg/retina.svg'); ?>">
+					<img class="title-icons" src="<?php echo base_url('images/icons/png/Retina-Ready.png'); ?>">
 					<h3 class="title">BEHAVIORAL COMPETENCY</h3>
 					<p>This section will evaluate the personnel based on his/her working behavior. This includes Attendance, Job Attitude, Initiative, Customer Service, Cooperation/Teamwork, and Honest and Integrity.</p>
 					<br/>
 					<table class="table table-striped table-bordered">
 						<thead>
 							<tr>
-								<th>TITLE</th>
-								<th>QUESTIONS</th>
+								<th style='width: 10%'>TITLE</th>
+								<th style='width: 85%'>QUESTIONS</th>
 								<?php
 									for ($i = 1 ; $i <= 5; $i++){
-										echo "<th><center>".$i."</center></th>";
+										echo "<th style='width: 5%'><center>".$i."</center></th>";
 									}	
 								?>
 							</tr>
@@ -226,11 +227,11 @@
 							</tr>
 						</tbody>
 					</table>
-					<hr>
+					<hr><br/>
 					<img class="title-icons" src="<?php echo base_url('images/icons/png/Comment.png'); ?>">
 					<h3 class="title">COMMENTS <small>[Optional]</small></h3>
 					<p>What are the strengths that the personnel being evaluated possesses in his/her job? What are the things to improve on?</p>
-					<textarea cols="40" rows="4" name="field"></textarea>
+					<textarea cols="40" rows="5" name="field"></textarea>
 					<hr>
 					<div class="form-action"><center>
 						<a href="#confirmSubmit" role="button" data-toggle="modal" class="btn btn-success">Confirm <span class="fui-lock"></span></a>

@@ -57,7 +57,7 @@ class Answer extends CI_Controller {
 		}
 		else{
 			$this->FormSave->saveForms($names);
-			$this->upcoming();
+			print('GREAT!');
 		}
 	}
 

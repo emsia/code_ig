@@ -11,36 +11,33 @@ class FormSave extends CI_Model {
 	
 	function saveForms($names){
 		$date = date('Y-m-d G:i:s');
-		$userDetail = $this->getUid();
+
 		$dataWC = array(
-			'user_id' 		  => $userDetail['user_id'],
 			'quantity' 		  => $_POST[$names[0]],
 			'quality' 		  => $_POST[$names[1]],
 			'knowledge' 	  => $_POST[$names[2]],
 			'reliability'	  => $_POST[$names[3]],
 			'leaning_ability' => $_POST[$names[4]],	
-			'date_answered'	  => $date	
 		);
 		$this->db->insert('work_competency', $dataWC);
+		$WC_id = $this->db->insert_id();
 
 		$dataBC = array(
-			'user_id' 		  => $userDetail['user_id'],
 			'attendance' 	  => $_POST[$names[5]],
 			'job_attitude' 	  => $_POST[$names[6]],
 			'initiative' 	  => $_POST[$names[7]],
 			'customer_service'	  => $_POST[$names[8]],
 			'cooperation_temWorl' => $_POST[$names[9]],	
 			'honesty_integrity'	  => $_POST[$names[10]],
-			'date_answered'	  => $date	
 		);
-		$data1 = $this->db->insert('behavior_competency', $dataBC);
-		print( $data1 );
+		$this->db->insert('behavior_competency', $dataBC);
+		$BC_id = $this->db->insert_id();
 
 		if(!empty($_POST['field'])){
 			$dataComment = array(
-				'user_id'	=> $userDetail['user_id'],
-				
+				'field' => $_POST['field']
 			);
+			$C_id = $this->db->insert_id();
 		}	
 	}
 

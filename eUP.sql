@@ -35,36 +35,27 @@ CREATE TABLE IF NOT EXISTS `team` (
 CREATE TABLE IF NOT EXISTS `work_competency` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `quantity` int(11) DEFAULT 0,
-  `user_id` int(11) NOT NULL,
   `quality` int(11) DEFAULT 0,
   `knowledge` int(11) DEFAULT 0,
   `reliability` int(11) DEFAULT 0,
-  `date_answered` datetime DEFAULT NULL,
   `leaning_ability` int(11) DEFAULT 0,
-  KEY `user_id` (`user_id`),
   PRIMARY KEY (`id`)
 );
 
 CREATE TABLE IF NOT EXISTS `behavior_competency` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `attendance` int(11) DEFAULT 0,
-  `user_id` int(11) NOT NULL,
   `job_attitude` int(11) DEFAULT 0,
   `initiative` int(11) DEFAULT 0,
   `customer_service` int(11) DEFAULT 0,
   `cooperation_temWorl` int(11) DEFAULT 0,
   `honesty_integrity` int(11) DEFAULT 0,
-  `date_answered` datetime DEFAULT NULL,
-  KEY `user_id` (`user_id`),
   PRIMARY KEY (`id`)
 );
 
 CREATE TABLE IF NOT EXISTS `comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `field` varchar(255) DEFAULT NULL,
-  `user_id` int(11) NOT NULL,
-  `date_answered` datetime DEFAULT NULL,
-  KEY `user_id` (`user_id`),
   PRIMARY KEY (`id`)
 );
 
@@ -75,6 +66,7 @@ CREATE TABLE IF NOT EXISTS `evaluation_results` (
   `behavior_competency_id` int(11) NOT NULL,
   `comments_id` int(11) NOT NULL,
   `performance_rate` float(4),
+  `date_answered` datetime DEFAULT NULL,
   KEY `user_id` (`user_id`),
   KEY `work_competency_id` (`work_competency_id`),
   KEY `behavior_competency_id` (`behavior_competency_id`),
@@ -101,18 +93,6 @@ ALTER TABLE `user_details`
 -- - team foreign key for users
 ALTER TABLE `team`
   ADD CONSTRAINT `team_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
--- - team foreign key for users
-ALTER TABLE `comments`
-  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
- -- - team foreign key for users
-ALTER TABLE `work_competency`
-  ADD CONSTRAINT `work_competency_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-   
--- - team foreign key for users
-ALTER TABLE `behavior_competency`
-  ADD CONSTRAINT `behavior_competency_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 -- - evaluation_results foreign key for users, WC, BC and Comments
 ALTER TABLE `evaluation_results`

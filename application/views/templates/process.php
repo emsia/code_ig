@@ -4,7 +4,7 @@
 	<div class="topliner">
 		<div class="content">
 			<div id='top'>
-			<img class="title-icons" src="<?php echo base_url('images/icons/svg/loop.svg'); ?>">
+			<img class="title-icons" src="<?php echo base_url('images/icons/png/Infinity-Loop.png'); ?>">
 			<h3 class="title">Process of Answering the Form</h3>
 			<p> Overwhelmed? Fear not! This is the Mechanics of how you can evaluate your work and help your co-members. Just Click on the links and read carefully.
 			<ul>
@@ -93,7 +93,7 @@
 			</div>	
 			<hr>					
 			<div id="Job">
-				<img class="title-icons" src="<?php echo base_url('images/icons/svg/clocks.svg'); ?>">
+				<img class="title-icons" src="<?php echo base_url('images/icons/png/watches.png'); ?>">
 				<h2 class="title">Critical Job Element Definitions</h2>
 				<p>Please read the critical job element definitions prior to conducting the evaluation. These job elements are rated from 1-5:
 				<ul>
