@@ -19,14 +19,15 @@
 			<?php if(!empty($errors)){ ?>
 				<div class="alert alert-error alert-block"><?php echo $errors; ?></div>
 			<?php }?>
-			<table class="table table-bordered">	
-				<tr><center>
-					<p colspan="6"><b style="color:red">1</b>-POOR &nbsp; <b style="color:red">2</b>-NEEDS IMPROVEMENT &nbsp; <b style="color:red">3</b>-SATISFACTORY &nbsp; <b style="color:red">4</b>-VERY SATISFACTORY &nbsp; <b style="color:red">5</b>-OUTSTANDING</p>
-				</center></tr>
-				<hr>
-			</table>
 
 				<?php echo form_open('answer/submitEvalForm', $class); ?>
+				<table class="table table-bordered">	
+					<tr><center>
+						<p colspan="6"><b style="color:red">1</b>-POOR &nbsp; <b style="color:red">2</b>-NEEDS IMPROVEMENT &nbsp; <b style="color:red">3</b>-SATISFACTORY &nbsp; <b style="color:red">4</b>-VERY SATISFACTORY &nbsp; <b style="color:red">5</b>-OUTSTANDING</p>
+					</center></tr>
+					<hr>
+				</table>
+
 					<img class="title-icons" src="<?php echo base_url('images/icons/png/notes.png'); ?>">
 					<h3 class="title">WORK COMPETENCY</h3>
 					<p>This section will evaluate the personnel based on his/her work competency which includes Quality of work, Quantity of work, Job knowledge, Reliability, and Learning ability.</p>

@@ -11,6 +11,7 @@ class FormSave extends CI_Model {
 	
 	function saveForms($names){
 		$date = date('Y-m-d G:i:s');
+		$user_id = $this->getUid();
 
 		$dataWC = array(
 			'quantity' 		  => $_POST[$names[0]],
@@ -32,6 +33,7 @@ class FormSave extends CI_Model {
 		);
 		$this->db->insert('behavior_competency', $dataBC);
 		$BC_id = $this->db->insert_id();
+		$C_id = Null;
 
 		if(!empty($_POST['field'])){
 			$dataComment = array(
@@ -39,6 +41,15 @@ class FormSave extends CI_Model {
 			);
 			$C_id = $this->db->insert_id();
 		}	
+		
+	  $dataE_Results = array(
+	  	'user_id' 					=> $user_id['user_id'],
+	  	'work_competency_id' 		=> $WC_id,
+	  	'behavior_competency_id'	=> $BC_id,
+	  	'comments_id'				=> $C_id,
+	  	`date_answered`				=> $date,
+	  );
+
 	}
 
 	function getUid(){
