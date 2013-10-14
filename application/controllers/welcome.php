@@ -42,18 +42,18 @@ class Welcome extends CI_Controller {
 		}else{
 			$uname = $this->input->post('username');
 			$pword = $this->input->post('password');
-			if(!$this->user_model->verifynameAndPass($uname,$pword)){
+			if(!$this->User_model->verifynameAndPass($uname,$pword)){
 				$data['errors'] = "Invalid username and password combination.";//"Your Account is not yet Verified. Please Confirm it first using email.";
 				$this->index($data);
 				return;
 			}
-			if( !$this->user_model->verifynameAndPass($uname,$pword, 1)){
+			if( !$this->User_model->verifynameAndPass($uname,$pword, 1)){
 				$data['errors'] = "Account not yet Verified. Check your email.";
 				$this->index($data);
 				return;
 			}
 			
-			$result = $this->user_model->getuid($uname);
+			$result = $this->User_model->getuid($uname);
 			$this->log($uname,$result['role']);
 			redirect('http://localhost/code_ig/index.php/home');
 		}
@@ -76,6 +76,7 @@ class Welcome extends CI_Controller {
 		$data['firstname'] = $name['firstname'];
 		$data['lastname'] = $name['lastname'];
 		$data['middle'] = $name['middle'];
+		$data['user_id'] = $name['id'];
 		return $data;
 	}
 

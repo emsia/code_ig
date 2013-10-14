@@ -234,7 +234,7 @@
 					<hr>
 					<div class="form-action"><center>
 						<a href="#confirmSubmit" role="button" data-toggle="modal" class="btn btn-success">Confirm <span class="fui-lock"></span></a>
-						<button class="btn btn-warning setRe" onClick="setRed()" type="reset">Reset <span class="fui-pause"></span></button>
+						<button class="btn btn-warning" onClick="setRed()" type="reset">Reset <span class="fui-pause"></span></button>
 					</div>
 
 
@@ -256,23 +256,15 @@
 		</div>	
 	</div>
 	<script>
-		$(document).ready(function() {
-			$('.setRe').change(function() {
-				var checkboxes = $(this).closest('form').find(':label');
-				alert(checkboxes);
-				if($(this).is(':checked')) {
-					checkboxes.removeAttr('checked');
-				}
-			});		
-		 });
-
 		function setRed(){
 			var boxes = document.getElementsByTagName("label");
+			var bar_boxes = document.getElementsByTagName("input");
 
 			for( i = 0; i < boxes.length; i++ ){
 				myType = boxes[i].getAttribute("class");
 				if( myType == "radio checked" ) {
 					boxes[i].setAttribute('class','radio');
+					bar_boxes[i].removeAttribute('checked');
 				}	
 			}
 		}

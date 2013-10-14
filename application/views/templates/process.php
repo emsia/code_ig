@@ -46,8 +46,8 @@
 					<li>For Individual:
 						<table class="table table-bordered table-striped">
 							<thead>
-									<tr><th>ITEM</th>
-									<th>Percentage (%)</th><tr>
+									<tr><th style="width: 60%">ITEM</th>
+									<th style="width: 40%">Percentage (%)</th><tr>
 							</thead>
 							<tbody>
 									<tr><td>Self</td><td>10%</td></tr>
@@ -61,8 +61,8 @@
 					<li>For Team Leader:
 						<table class="table table-bordered table-striped">
 							<thead>
-									<tr><th>ITEM</th>
-									<th>Percentage (%)</th><tr>
+									<tr><th style="width: 60%">ITEM</th>
+									<th style="width: 40%">Percentage (%)</th><tr>
 							</thead>
 							<tbody>
 									<tr><td>Result of evaluation of Members</td><td>10%</td></tr>
@@ -76,8 +76,8 @@
 					<li>Average Output Score Evaluation - Adjectival Rating:
 						<table class="table table-bordered table-striped">
 							<thead>
-									<tr><th>Range</th>
-									<th>Equivalent</th><tr>
+									<tr><th style="width: 60%">Range</th>
+									<th style="width: 40%">Equivalent</th><tr>
 							</thead>
 							<tbody>
 									<tr><td>4.5 - 5.0</td><td>Outstanding</td></tr>

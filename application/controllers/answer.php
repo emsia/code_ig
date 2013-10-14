@@ -20,7 +20,9 @@ class Answer extends CI_Controller {
 	}
 	
 	public function FormEvaluate( $data = Null ){
+		$temp = $data['errors'];
 		$data = $this->getInfo();
+		$data['errors'] = $temp;
 		$data['title'] = "eUP Performance Evaluation | Answer";
 		$data['active_nav'] = 'ANSWERFORM';
 		$this->load->view('templates/head', $data);
