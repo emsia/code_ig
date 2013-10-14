@@ -33,7 +33,8 @@ class FormSave extends CI_Model {
 			'honesty_integrity'	  => $_POST[$names[10]],
 			'date_answered'	  => $date	
 		);
-		$this->db->insert('behavior_competency', $dataBC);
+		$data1 = $this->db->insert('behavior_competency', $dataBC);
+		print( $data1 );
 
 		if(!empty($_POST['field'])){
 			$dataComment = array(
