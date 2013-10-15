@@ -21,12 +21,11 @@
 			<?php }?>
 
 				<?php echo form_open('answer/submitEvalForm', $class); ?>
-				<table class="table table-bordered">	
-					<tr><center>
-						<p colspan="6"><b style="color:red">1</b>-POOR &nbsp; <b style="color:red">2</b>-NEEDS IMPROVEMENT &nbsp; <b style="color:red">3</b>-SATISFACTORY &nbsp; <b style="color:red">4</b>-VERY SATISFACTORY &nbsp; <b style="color:red">5</b>-OUTSTANDING</p>
-					</center></tr>
+				<center>
+					<p colspan="6"><b style="color:red">1</b>-POOR &nbsp; <b style="color:red">2</b>-NEEDS IMPROVEMENT &nbsp; <b style="color:red">3</b>-SATISFACTORY &nbsp; <b style="color:red">4</b>-VERY SATISFACTORY &nbsp; <b style="color:red">5</b>-OUTSTANDING</p>
+				</center>	
+					
 					<hr>
-				</table>
 
 					<img class="title-icons" src="<?php echo base_url('images/icons/png/notes.png'); ?>">
 					<h3 class="title">WORK COMPETENCY</h3>
@@ -119,12 +118,11 @@
 						</tbody>
 					</table><br/>
 					<hr>
-
-					<table class="table table-bordered">	
-						<tr><center>
-							<p colspan="6"><b style="color:red">1</b>-POOR &nbsp; <b style="color:red">2</b>-NEEDS IMPROVEMENT &nbsp; <b style="color:red">3</b>-SATISFACTORY &nbsp; <b style="color:red">4</b>-VERY SATISFACTORY &nbsp; <b style="color:red">5</b>-OUTSTANDING</p>
-						</center></tr><hr>
-					</table>
+					<center>
+						<p colspan="6"><b style="color:red">1</b>-POOR &nbsp; <b style="color:red">2</b>-NEEDS IMPROVEMENT &nbsp; <b style="color:red">3</b>-SATISFACTORY &nbsp; <b style="color:red">4</b>-VERY SATISFACTORY &nbsp; <b style="color:red">5</b>-OUTSTANDING</p>
+					</center>
+					<hr>
+					
 					<img class="title-icons" src="<?php echo base_url('images/icons/png/Retina-Ready.png'); ?>">
 					<h3 class="title">BEHAVIORAL COMPETENCY</h3>
 					<p>This section will evaluate the personnel based on his/her working behavior. This includes Attendance, Job Attitude, Initiative, Customer Service, Cooperation/Teamwork, and Honest and Integrity.</p>
