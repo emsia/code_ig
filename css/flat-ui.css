@@ -3624,7 +3624,7 @@ body.vjs-full-window {
   background: #F39C12;
   height: 100%;
   width: 100%;
-  position: absolute;
+  position: relative;
   text-align: center;
 }
 
@@ -3637,7 +3637,6 @@ body.vjs-full-window {
 }
 .login-screen {
   display: inline-block;
-  vertical-align: -10px;
   margin:0 auto
 }
 .login-icon {
@@ -3667,18 +3666,11 @@ body.vjs-full-window {
 .login-form {
   background-color: #edeff1;
   padding: 29px 29px 29px;
-  position: absolute;
-  border-radius: 6px;
-  margin-top: -20%;
-  left: 40%;
-}
-.signup-form {
-  background-color: #edeff1;
-  padding: 29px 29px 29px;
   position: relative;
-  border-radius: 6px;;
-  left: 40%;
+  border-radius: 6px;
+  left: 15%;
 }
+
 .login-form:before {
   content: '';
   border-style: solid;

@@ -28,5 +28,31 @@ class User_model extends CI_Model {
 		$query = $this->db->get_where('users',array('username' => $uname));
 		return $query->row_array();
 	}
+	
+	function saltgen($max){
+        $characterList = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        $i = 0;
+        $salt = "";
+        while ($i < $max) {
+            $salt .= $characterList{mt_rand(0, (strlen($characterList) - 1))};
+            $i++;
+        }
+        return $salt;
+	}
+	
+	function insertData(){
+		$data = array(
+			'username'	=> $_POST['username'],
+			'email'			=> $_POST['email'],
+			'password'	=> sha1($_POST['password']),
+			'middle'		=> $_POST['middleName'],
+			'firstname'	=> $_POST['firtsName'],
+			'lastname'	=> $_POST['lastName'],
+			'role'			=> 3,
+			'verified'		=> 0,
+			'slug'			=> $this->saltgen(25),
+		);
+		$this->db->insert('users', $data);
+	}
 }
 ?>

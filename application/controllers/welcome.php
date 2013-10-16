@@ -20,10 +20,7 @@ class Welcome extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 	
-	public function signupForm(){
-		//$this->load->library('session');
-		session_start();
-  
+	public function signupForm(){  
 		$data['title'] = "eUP Performance Evaluation | Login";
 		$data['login'] = 1;
 		$this->load->view('templates/head', $data);
@@ -33,38 +30,68 @@ class Welcome extends CI_Controller {
 	
 	public function signup(){
 		session_start();
+		$config = array(
+			array(
+				'field'   => 'lastName', 
+                'label'   => 'lastName', 
+                'rules'   => 'required'
+            ),
+            array(
+				'field'   => 'firtsName', 
+				'label'   => 'firtsName', 
+				'rules'   => 'required'
+            ),
+			array(
+				'field'   => 'middleName', 
+				'label'   => 'middleName', 
+				'rules'   => 'required'
+            ),
+			array(
+				'field'   => 'email', 
+				'label'   => 'email', 
+				'rules'   => 'required|valid_email|is_unique[users.email]'
+            ),
+			array(
+				'field'   => 'username', 
+				'label'   => 'username', 
+				'rules'   => 'required'
+            ),
+			array(
+				'field'   => 'password', 
+				'label'   => 'password', 
+				'rules'   => 'required|matches[confPassword]|min_length[6]'
+            ),
+			array(
+				'field'   => 'confPassword', 
+				'label'   => 'Confirm', 
+				'rules'   => 'required'
+            ),
+			array(
+				'field'   => 'captcha', 
+				'label'   => 'captcha', 
+				'rules'   => 'required'
+            ),
+        );
 		
-		echo $_SESSION['captcha'];
 		if (empty($_SESSION['captcha']) || strtolower(trim($_REQUEST['captcha'])) != $_SESSION['captcha']) {
-			echo 'invalid';
+			$captcha = FALSE;
 		}else
-			echo 'true';
+			$captcha = TRUE;
+		
+		$this->form_validation->set_rules($config);
+		if ($this->form_validation->run() == FALSE && $captcha == FALSE ){
+			//echo $this->form_validation->errors;
+			$data['title'] = "eUP Performance Evaluation | Login";
+			$data['login'] = 1;
+			$this->load->view('templates/head', $data);
+			$this->load->view('templates/login');
+			$this->load->view('templates/footer');
+		}else{
+			$this->User_model->insertData();
+			return;
+		}
 	}
-	public function generateCode($characters)
- {
-	  /* list all possible characters, similar looking characters and vowels have been removed */
-	  $possible = '23456789bcdfghjkmnpqrstvwxyz';
-	  $code = '';
-	  $i = 0;
-	  while ($i < $characters)
-	  {
-	   $code .= substr($possible, mt_rand(0, strlen($possible)-1), 1);
-	   $i++;
-	  }
-	  return $code;
-	 }
-	 public function checkCaptcha($post)
-	 {
-	  if($post['captcha'] = $post['ccode'])
-	  {
-	   return 'Success';
-	  }
-	  else
-	  {
-	   return 'Mismatch, try again';
-	  }
-	 }
- 
+	 
 	public function loginSubmit(){
 		$config = array(
 			array(
