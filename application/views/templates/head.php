@@ -2,6 +2,7 @@
 	<head>
 		<title><?php echo $title ?></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  		<link rel="shortcut icon" type="text/css" href="<?php echo base_url('images/icons/favicon.ico'); ?>" />
 		
 		<link href="<?php echo base_url('css/bootstrap.css'); ?>" rel="stylesheet" media="screen">
 		<link href="<?php echo base_url('css/bootstrap-responsive.css'); ?>" rel="stylesheet" media="screen">

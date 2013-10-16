@@ -3672,6 +3672,13 @@ body.vjs-full-window {
   margin-top: -20%;
   left: 40%;
 }
+.signup-form {
+  background-color: #edeff1;
+  padding: 29px 29px 29px;
+  position: relative;
+  border-radius: 6px;;
+  left: 40%;
+}
 .login-form:before {
   content: '';
   border-style: solid;

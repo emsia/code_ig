@@ -5,7 +5,7 @@ class Welcome extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->library(array('session', 'form_validation'));
+		$this->load->library(array('session', 'form_validation', 'session'));
 		$this->load->helper('url');
 		$this->load->model('User_model');
 	}
@@ -20,6 +20,51 @@ class Welcome extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 	
+	public function signupForm(){
+		//$this->load->library('session');
+		session_start();
+  
+		$data['title'] = "eUP Performance Evaluation | Login";
+		$data['login'] = 1;
+		$this->load->view('templates/head', $data);
+		$this->load->view('templates/login');
+		$this->load->view('templates/footer');
+	}
+	
+	public function signup(){
+		session_start();
+		
+		echo $_SESSION['captcha'];
+		if (empty($_SESSION['captcha']) || strtolower(trim($_REQUEST['captcha'])) != $_SESSION['captcha']) {
+			echo 'invalid';
+		}else
+			echo 'true';
+	}
+	public function generateCode($characters)
+ {
+	  /* list all possible characters, similar looking characters and vowels have been removed */
+	  $possible = '23456789bcdfghjkmnpqrstvwxyz';
+	  $code = '';
+	  $i = 0;
+	  while ($i < $characters)
+	  {
+	   $code .= substr($possible, mt_rand(0, strlen($possible)-1), 1);
+	   $i++;
+	  }
+	  return $code;
+	 }
+	 public function checkCaptcha($post)
+	 {
+	  if($post['captcha'] = $post['ccode'])
+	  {
+	   return 'Success';
+	  }
+	  else
+	  {
+	   return 'Mismatch, try again';
+	  }
+	 }
+ 
 	public function loginSubmit(){
 		$config = array(
 			array(
