@@ -88,7 +88,11 @@ class Welcome extends CI_Controller {
 			$this->load->view('templates/footer');
 		}else{
 			$this->User_model->insertData();
-			return;
+			$data['title'] = "eUP Performance Evaluation | Confirm";
+			$data['login'] = 2;
+			$this->load->view('templates/head', $data);
+			$this->load->view('templates/login');
+			$this->load->view('templates/footer');
 		}
 	}
 	 

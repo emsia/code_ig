@@ -31,7 +31,7 @@
 				<a class="login-link" href="<?php echo base_url('index.php/welcome/signupForm'); ?>" style="text-decoration: none">Not Yet Member?</a>
 			</div>
 		<?php echo form_close(); ?>
-		<?php } else{?>
+		<?php } elseif( $login == 1 ){?>
 		
 		<?php echo form_open('welcome/signup');?>	
 		<div class="login-form" style="margin-top: 35%">				
@@ -101,6 +101,8 @@
 				<a href="<?php echo base_url('/');?>" type="button" class="btn btn-warning btn-block" >Cancel</a>
 		</div>
 		<?php echo form_close(); ?>
+		<?php } else ?>
+			<h1 class="text-white">Validation Sent!<br/></h1><p class="text-white">Please check your email for account confirmation.</p><br/>
 		<?php }?>
 			
         </div>
