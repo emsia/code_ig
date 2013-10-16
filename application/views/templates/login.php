@@ -5,11 +5,12 @@
 		}
 	</style>
         <div class="login-screen">
+		<?php if(empty($login) || $login != 2) {?>
           <div class="login-icon">
             <img class="img-circle" src='<?php echo base_url('images/icons/UPLittle.png') ?>' alt="Welcome to Mail App" />
             <h4>Welcome to <small>eUP Performance Evaluation</small></h4>
           </div>
-		
+		<?php }?>
 		<?php if(empty($login)){ ?>
 		<?php echo form_open('welcome/loginSubmit');?>	
           <div class="login-form">
@@ -101,8 +102,9 @@
 				<a href="<?php echo base_url('/');?>" type="button" class="btn btn-warning btn-block" >Cancel</a>
 		</div>
 		<?php echo form_close(); ?>
-		<?php } else ?>
+		<?php } else{ ?>
 			<h1 class="text-white">Validation Sent!<br/></h1><p class="text-white">Please check your email for account confirmation.</p><br/>
+			<a href="<?php echo base_url('/'); ?>" class="btn btn-large btn-warning"><span class="fui-arrow-left"></span>Login</a>
 		<?php }?>
 			
         </div>
