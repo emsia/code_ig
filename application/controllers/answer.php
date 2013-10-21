@@ -15,7 +15,7 @@ class Answer extends CI_Controller {
 		$data['active_nav'] = 'RESULT';
 		$this->load->view('templates/head', $data);
 		$this->load->view('templates/body');
-		$this->load->view('evaluation/evalForm');
+		//$this->load->view('evaluation/evalForm');
 		$this->load->view('templates/footer');
 	}
 	

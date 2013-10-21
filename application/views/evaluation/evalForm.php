@@ -229,7 +229,7 @@
 					</table>
 					<hr><br/>
 					<img class="title-icons" src="<?php echo base_url('images/icons/png/Comment.png'); ?>">
-					<h3 class="title">COMMENTS <small>[Optional]</small></h3>
+					<h3 class="title">COMMENTS</h3>
 					<p>What are the strengths that the personnel being evaluated possesses in his/her job? What are the things to improve on?</p>
 					<textarea cols="40" rows="5" name="field"></textarea>
 					<hr>

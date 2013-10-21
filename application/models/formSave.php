@@ -13,6 +13,10 @@ class FormSave extends CI_Model {
 		$date = date('Y-m-d G:i:s');;
 		$evaluator = $this->getUid();
 		
+		for($i=0; $i<5;$i++)
+			$totalWC = $totalWC + $_POST[$names[$i]] ;
+		$totalWC /= 5;
+		
 		$dataWC = array(
 			'quantity' 		  => $_POST[$names[0]],
 			'quality' 		  => $_POST[$names[1]],
@@ -22,8 +26,11 @@ class FormSave extends CI_Model {
 		);
 		$this->db->insert('work_competency', $dataWC);
 		$WC_id = $this->db->insert_id();
-		print($WC_id);
-
+	
+		for($i=5; $i<11;$i++)
+			$totalBC = $totalBC + $_POST[$names[$i]] ;
+		$totalBC /= 6;
+		
 		$dataBC = array(
 			'attendance' 	  => $_POST[$names[5]],
 			'job_attitude' 	  => $_POST[$names[6]],
@@ -35,14 +42,12 @@ class FormSave extends CI_Model {
 		$this->db->insert('behavior_competency', $dataBC);
 		$BC_id = $this->db->insert_id();
 		$C_id = 0;
-
-		if(!empty($_POST['field'])){
-			$dataComment = array(
-				'field' => $_POST['field']
-			);
-			$this->db->insert('comments', $dataComment);
-			$C_id = $this->db->insert_id();
-		}	
+		
+		$dataComment = array(
+			'field' => $_POST['field']
+		);
+		$this->db->insert('comments', $dataComment);
+		$C_id = $this->db->insert_id();
 		
 	  $dataE_Results = array(
 	  	'user_id' 					=> $user_id,
@@ -50,7 +55,9 @@ class FormSave extends CI_Model {
 	  	'behavior_competency_id'	=> $BC_id,
 	  	'comments_id'				=> $C_id,
 	  	'date_answered'				=> $date,
-		'evaluator' => $evaluator['user_id']
+		'evaluator' => $evaluator['user_id'],
+		'work_rate'	=> $totalWC,
+		'behavior_rate' => $totalBC
 	  );
 		$this->db->insert('evaluation_results', $dataE_Results);
 		
