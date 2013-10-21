@@ -12,7 +12,7 @@
 	<div class="span9">
 		<div class="topliner">
 			<div class="content">
-				<?php if($role){?>
+				<?php if($role==1 || $role==0){?>
 					<p class="pull-right">
 						<a href="#myModal" role="button" data-toggle="modal" data-placement="left" title data-original-title="Invite a Member" class="btn btn-warning"><i class="fui-plus"></i></a>
 					</p>

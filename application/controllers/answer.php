@@ -192,12 +192,12 @@ class Answer extends CI_Controller {
 		$data['active_nav'] = 'ANSWERFORM';
 
 		$names = ['quality', 'quantity', 'knowledge', 'reliability', 'leaning_ability', 'attendance', 'job_attitude', 'initiative', 'customer_service', 'cooperation_temWorl', 'honesty_integrity', 'field'];
-		for ( $i = 0; $i < 11; $i++)
+		for ( $i = 0; $i < 12; $i++)
 			$this->form_validation->set_rules($names[$i], $names[$i], 'required');
 
 		if ($this->form_validation->run() == FALSE)
 		{
-			$data['errors'] = 'Incomplete Form. Please fill up completely except the Optional Field(Comment).';
+			$data['errors'] = 'Incomplete Form. Please fill up the form completely.';
 			$this->FormEvaluate($userSlug,$data);
 		}
 		else{
