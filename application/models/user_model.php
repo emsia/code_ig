@@ -54,5 +54,16 @@ class User_model extends CI_Model {
 		);
 		$this->db->insert('users', $data);
 	}
+	
+	function getDataBase($tableName, $getId, $evaluator, $where_to_get){
+		if( empty($evaluator) ) $query = $this->db->get_where($tableName, array($where_to_get => $getId));
+		else	$query = $this->db->get_where($tableName, array($where_to_get => $getId, 'evaluator' => $evaluator));
+		return $query->result_array();
+	}
+	
+	function getAllUsers(){
+		$query = $this->db->get('users');
+		return $query->result_array();
+	}
 }
 ?>

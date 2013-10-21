@@ -50,10 +50,9 @@
 									<th style="width: 40%">Percentage (%)</th><tr>
 							</thead>
 							<tbody>
-									<tr><td>Self</td><td>10%</td></tr>
-									<tr><td>Peer (Per team)</td><td>20%</td></tr>
+									<tr><td>Peer (Per team)</td><td>25%</td></tr>
 									<tr><td>Team Leader/Dep Team Leader</td><td>30%</td></tr>
-									<tr><td>Director</td><td>40%</td></tr>
+									<tr><td>Director</td><td>45%</td></tr>
 									<tr><td><b>Total</b></td><td><b>100%</b></td></tr>
 							</tbody>
 						</table>

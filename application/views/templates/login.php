@@ -35,7 +35,7 @@
 		<?php } elseif( $login == 1 ){?>
 		
 		<?php echo form_open('welcome/signup');?>	
-		<div class="login-form" style="margin-top: 35%">				
+		<div class="login-form" style="margin-top: 20%">				
 				<?php $this->form_validation->set_error_delimiters('<p class="text-error">', '</p>'); ?>
 				<?php if (!empty($errors)){?>
 				<p class="text-error"><?php echo $errors ;?></p><br/>

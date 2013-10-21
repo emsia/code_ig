@@ -3668,7 +3668,7 @@ body.vjs-full-window {
   padding: 29px 29px 29px;
   position: relative;
   border-radius: 6px;
-  left: 15%;
+  left: 25%;
 }
 
 .login-form:before {
@@ -3695,7 +3695,7 @@ body.vjs-full-window {
   padding-top: 11px;
   text-indent: 3px;
   width: 299px;
-  margin-bottom: 10px !important;
+  margin-bottom: 3px !important;
 }
 .login-form .login-field:focus + .login-field-icon {
   color: #1abc9c;

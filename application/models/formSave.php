@@ -9,10 +9,10 @@ class FormSave extends CI_Model {
 		include($_SERVER['DOCUMENT_ROOT'] .'/code_ig/application/controllers/welcome.php');
 	}
 	
-	function saveForms($names){
-		$date = date('Y-m-d G:i:s');
-		$user_id = $this->getUid();
-
+	function saveForms($names, $user_id){
+		$date = date('Y-m-d G:i:s');;
+		$evaluator = $this->getUid();
+		
 		$dataWC = array(
 			'quantity' 		  => $_POST[$names[0]],
 			'quality' 		  => $_POST[$names[1]],
@@ -22,6 +22,7 @@ class FormSave extends CI_Model {
 		);
 		$this->db->insert('work_competency', $dataWC);
 		$WC_id = $this->db->insert_id();
+		print($WC_id);
 
 		$dataBC = array(
 			'attendance' 	  => $_POST[$names[5]],
@@ -33,23 +34,26 @@ class FormSave extends CI_Model {
 		);
 		$this->db->insert('behavior_competency', $dataBC);
 		$BC_id = $this->db->insert_id();
-		$C_id = Null;
+		$C_id = 0;
 
 		if(!empty($_POST['field'])){
 			$dataComment = array(
 				'field' => $_POST['field']
 			);
+			$this->db->insert('comments', $dataComment);
 			$C_id = $this->db->insert_id();
 		}	
 		
 	  $dataE_Results = array(
-	  	'user_id' 					=> $user_id['user_id'],
+	  	'user_id' 					=> $user_id,
 	  	'work_competency_id' 		=> $WC_id,
 	  	'behavior_competency_id'	=> $BC_id,
 	  	'comments_id'				=> $C_id,
-	  	`date_answered`				=> $date,
+	  	'date_answered'				=> $date,
+		'evaluator' => $evaluator['user_id']
 	  );
-
+		$this->db->insert('evaluation_results', $dataE_Results);
+		
 	}
 
 	function getUid(){
