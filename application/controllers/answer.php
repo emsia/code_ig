@@ -193,6 +193,10 @@ class Answer extends CI_Controller {
 		return $sumAll;
 	}
 	
+	public function evalDetails($num){
+		$list = $this->User_model->getME($num);
+	}
+	
 	public function people($message=Null){
 		$data = $this->getInfo();
 		$data['title'] = "eUP Performance Evaluation | Evaluate";

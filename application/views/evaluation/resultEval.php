@@ -19,10 +19,13 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th style="width: 40%">Team Name</th>
-							<th style="width: 30%">Full Name</th>				
-							<th style="width: 20%">Overall(100%)</th>
-							<th style="width: 10%">Action</th>
+							<th style="width: 17%">Team</th>
+							<th style="width: 28%">Name</th>
+							<th style="width: 11%">Director(40%)</th>
+							<th style="width: 11%">Leaders(30%)</th>
+							<th style="width: 11%">Members(20%)</th>
+							<th style="width: 11%">Result of Members(10%)</th>							
+							<th style="width: 11%">Overall(100%)</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -30,8 +33,11 @@
 							<tr>
 								<td><?php echo $team_nameOthers[$i]; ?></td>
 								<td><?php echo $lastnameOther[$i].", ".$firstnameOther[$i]." ".substr($middleOther[$i],0,1)."."; ?></td>
+								<td><?php echo round($directorLeader[$i],2);?></td>
+								<td><?php echo round($leaderLeader[$i],2);?></td>
+								<td><?php echo round($perrLeader[$i],2);?></td>
+								<td><?php echo round($result_of_members[$i],2);?></td>
 								<td><?php echo round($overallLeader[$i],2);?></td>
-								<td><a href="#">View</a></td>
 							</tr>
 						<?php }?>
 					</tbody>
@@ -44,10 +50,12 @@
 							<table class="table table-striped">
 								<thead>
 									<tr>
-										<th style="width: 40%">Team Name</th>
-										<th style="width: 30%">Full Name</th>
-										<th style="width: 20%">Overall(100%)</th>
-										<th style="width: 10%">Action</th>
+										<th style="width: 18%">Team</th>
+										<th style="width: 28%">Name</th>
+										<th style="width: 13%">Director(45%)</th>
+										<th style="width: 13%">Leaders(30%)</th>
+										<th style="width: 13%">Peer(25%)</th>
+										<th style="width: 13%">Overall(100%)</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -55,8 +63,10 @@
 										<tr>
 											<td><?php echo $team_name[$i]; ?></td>
 											<td><?php echo $lastname[$i].", ".$firstname[$i]." ".substr($middle[$i],0,1)."."; ?></td>
+											<td><?php echo round($director[$i],2);?></td>
+											<td><?php echo round($leader[$i],2);?></td>
+											<td><?php echo round($peer[$i],2);?></td>
 											<td><?php echo round($overall[$i],2);?></td>
-											<td><a href="#">View</a></td>
 										</tr>
 									<?php }?>
 								</tbody>

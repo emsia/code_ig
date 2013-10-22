@@ -69,7 +69,7 @@ class User_model extends CI_Model {
 	}
 	
 	function getAllUsers_evaluationResults(){
-		$sql = "select distinct E.user_id, E.comments_id, E.work_rate, E.behavior_rate, U.lastname, U.firstname, U.middle, TM.team_id, T.short_name as team_name, U.role, R.role as role_ev
+		$sql = "select distinct E.user_id, E.work_rate, E.behavior_rate, U.lastname, U.firstname, U.middle, TM.team_id, T.team_name, U.role, R.role as role_ev
 					from evaluation_results E, users U, team T, team_member TM
 					join users R
 					where (E.user_id=U.id AND E.user_id=TM.user_id) AND TM.team_id=T.id AND R.id=E.evaluator order by U.lastname ASC";
@@ -85,6 +85,17 @@ class User_model extends CI_Model {
 					where (TM.team_id=$team_id AND TM.user_id=E.user_id) AND R.id=E.evaluator order by E.user_id";
 		$query = $this->db->query($sql);
 		return $query->result_array();			
+	}
+	
+	function getME( $user_id ){
+		$sql = "select distinct E.user_id, E.work_rate, E.behavior_rate, U.lastname AS evaluatorLast, U.firstname AS evaluatorFirst, U.middle AS evaluatorMiddle, C.field as comment, B.attendance, B.job_attitude, B.initiative, B.customer_service, B.cooperation_temWorl, B.honesty_integrity,
+					W.quantity, W.quality, W.knowledge, W.reliability, W.leaning_ability
+					from evaluation_results E, users U, team_member TM, comments C, work_competency W, behavior_competency B
+					where E.user_id=$user_id AND E.evaluator=U.id AND C.id=E.comments_id AND E.work_competency_id=W.id AND E.behavior_competency_id=B.id
+					ORDER BY evaluatorLast ASC";
+		
+		$query = $this->db->query($sql);
+		return $query->result_array();
 	}
 	
 }
