@@ -43,6 +43,7 @@ class Answer extends CI_Controller {
 						$members = $this->members( $old_tem_id, $data['user_id'] );
 						$members *= 0.1;
 						
+						$b['user_idOther'][] = $old_user_id;
 						$b['team_nameOthers'][] = $old_tem_name;
 						$b['result_of_members'][] = $members;
 						$b['perrLeader'][] = $team_score;
@@ -64,6 +65,7 @@ class Answer extends CI_Controller {
 						$b['overall'][] = $team_score + $leader_score + $director_score;
 						$b['countmembers']++;
 						
+						$b['user_id'][] = $old_user_id;
 						$b['team_name'][] = $old_tem_name;
 						$b['lastname'][] = $old_lastname;
 						$b['firstname'][] = $old_firstname;
@@ -81,6 +83,7 @@ class Answer extends CI_Controller {
 					$team_score += (($data_users['work_rate'] + $data_users['behavior_rate'])/2);
 					$team_count++;
 				}
+				$old_user_id = $data_users['user_id'];
 				$old_role = $data_users['role'];
 				$old_tem_id = $data_users['team_id'];
 				$old_tem_name = $data_users['team_name'];
@@ -106,6 +109,7 @@ class Answer extends CI_Controller {
 				$members = $this->members( $old_tem_id, $data['user_id'] );
 				$members *= 0.1;
 				
+				$b['user_idOther'][] = $old_user_id;
 				$b['team_nameOthers'][] = $old_tem_name;
 				$b['result_of_members'][] = $members;
 				$b['perrLeader'][] = $team_score;
@@ -127,6 +131,7 @@ class Answer extends CI_Controller {
 				$b['overall'][] = $team_score + $leader_score + $director_score;
 				$b['countmembers']++;
 				
+				$b['user_id'][] = $old_user_id;
 				$b['team_name'][] = $old_tem_name;
 				$b['lastname'][] = $old_lastname;
 				$b['firstname'][] = $old_firstname;
@@ -193,8 +198,50 @@ class Answer extends CI_Controller {
 		return $sumAll;
 	}
 	
-	public function evalDetails($num){
-		$list = $this->User_model->getME($num);
+	public function evaluationDetails($num){
+		$data = $this->getInfo();
+		$data['title'] = "eUP Performance Evaluation | Details";
+		$data['active_nav'] = 'RESULT';
+		
+		$user_slug = $this->User_model->getDataBase('users',$num, '','slug');
+		$list = $this->User_model->getME($user_slug[0]['id']);
+		//var_dump($list);		
+		$b = array();
+		$b['count'] = 0;
+		$b['lastname_of_cliked'] = $user_slug[0]['lastname'];
+		$b['firstname_of_cliked'] = $user_slug[0]['firstname'];
+		$b['middlename_of_cliked'] = $user_slug[0]['middle'];
+		
+		foreach($list as $listData){
+			$b['lastName'][] = $listData['evaluatorLast'];
+			$b['firstName'][] = $listData['evaluatorFirst'];
+			$b['middleName'][] = $listData['evaluatorMiddle'];
+			
+			//WC
+			$b['quantity'][] = $listData['quantity'];
+			$b['quality'][] = $listData['quality'];
+			$b['knowledge'][] = $listData['knowledge'];
+			$b['reliability'][] = $listData['reliability'];
+			$b['leaning_ability'][] = $listData['leaning_ability'];
+			
+			//BC
+			$b['attendance'][] = $listData['attendance'];
+			$b['job_attitude'][] = $listData['job_attitude'];
+			$b['initiative'][] = $listData['initiative'];
+			$b['customer_service'][] = $listData['customer_service'];
+			$b['cooperation_temWorl'][] = $listData['cooperation_temWorl'];
+			$b['honesty_integrity'][] = $listData['honesty_integrity'];
+			
+			$b['comments'][] = $listData['comment'];
+			$b['work_rate'][] = $listData['work_rate'];
+			$b['behavior_rate'][] = $listData['behavior_rate'];
+			$b['count']++;
+		}
+		
+		$this->load->view('templates/head', $data);
+		$this->load->view('templates/body');
+		$this->load->view('evaluation/resultEval', $b);
+		$this->load->view('templates/footer');
 	}
 	
 	public function people($message=Null){

@@ -31,7 +31,7 @@
 								<td><?php echo $team_nameOthers[$i]; ?></td>
 								<td><?php echo $lastnameOther[$i].", ".$firstnameOther[$i]." ".substr($middleOther[$i],0,1)."."; ?></td>
 								<td><?php echo round($overallLeader[$i],2);?></td>
-								<td><a href="#">View</a></td>
+								<td><a href="<?php echo base_url('index.php/answer/evaluationDetails')."/".$user_idOther[$i];?>">View</a></td>
 							</tr>
 						<?php }?>
 					</tbody>
@@ -56,7 +56,7 @@
 											<td><?php echo $team_name[$i]; ?></td>
 											<td><?php echo $lastname[$i].", ".$firstname[$i]." ".substr($middle[$i],0,1)."."; ?></td>
 											<td><?php echo round($overall[$i],2);?></td>
-											<td><a href="#">View</a></td>
+											<td><a href="<?php echo base_url('index.php/answer/evaluationDetails')."/".$user_id[$i];?>">View</a></td>
 										</tr>
 									<?php }?>
 								</tbody>

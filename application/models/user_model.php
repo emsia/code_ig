@@ -69,7 +69,7 @@ class User_model extends CI_Model {
 	}
 	
 	function getAllUsers_evaluationResults(){
-		$sql = "select distinct E.user_id, E.work_rate, E.behavior_rate, U.lastname, U.firstname, U.middle, TM.team_id, T.team_name, U.role, R.role as role_ev
+		$sql = "select distinct U.slug as user_id, E.work_rate, E.behavior_rate, U.lastname, U.firstname, U.middle, TM.team_id, T.team_name, U.role, R.role as role_ev
 					from evaluation_results E, users U, team T, team_member TM
 					join users R
 					where (E.user_id=U.id AND E.user_id=TM.user_id) AND TM.team_id=T.id AND R.id=E.evaluator order by U.lastname ASC";
