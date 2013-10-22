@@ -9,9 +9,6 @@
 						</a>
 						<ul class="nav pull-right">
 							<li>
-								<a href="/help/">Help</a>
-							</li>
-							<li>
 								<a href="<?php echo base_url('index.php/welcome/logout');?>">Logout</a>
 							</li>
 							<li class="active dropdown">
