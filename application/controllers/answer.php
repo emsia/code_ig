@@ -13,13 +13,187 @@ class Answer extends CI_Controller {
 		$data = $this->getInfo();
 		$data['title'] = "eUP Performance Evaluation | Results";
 		$data['active_nav'] = 'RESULT';
+		
+		$allUsers = $this->User_model->getAllUsers_evaluationResults();
+		//var_dump($allUsers);
+		$b = array();
+		
+		$director_score = 0; $team_score = 0; $leader_score = 0; $director_count = 0; $team_count = 0; $leader_count = 0;
+		$b['countLeader'] = 0; $b['countmembers'] = 0; 
+		
+		if(!empty($allUsers)){
+			$first_id = $allUsers[0]['user_id']; 
+			$old_role = $allUsers[0]['role'];
+			foreach( $allUsers as $data_users ){
+				if( $first_id != $data_users['user_id'] ){
+					//print($data_users['user_id']);
+					$first_id = $data_users['user_id'];
+					if(!$team_count) $team_count = 1;
+					if(!$director_count) $director_count = 1;
+					if(!$leader_count) $leader_count = 1;
+					
+					$team_score /= $team_count;
+					$director_score /= $director_count;
+					$leader_score /= $leader_count;
+					
+					if( $old_role==1 ){
+						$team_score *= 0.2;
+						$leader_score *= 0.3;
+						$director_score *= 0.4;
+						$members = $this->members( $old_tem_id, $data['user_id'] );
+						$members *= 0.1;
+						
+						$b['team_nameOthers'][] = $old_tem_name;
+						$b['result_of_members'][] = $members;
+						$b['perrLeader'][] = $team_score;
+						$b['leaderLeader'][] = $leader_score;
+						$b['directorLeader'][] = $director_score;
+						$b['overallLeader'][] = $team_score + $leader_score + $director_score + $members;
+						$b['countLeader']++;
+						
+						$b['lastnameOther'][] = $old_lastname;
+						$b['firstnameOther'][] = $old_firstname;
+						$b['middleOther'][] = $old_middle;
+					}else{
+						$team_score *= 0.25;
+						$leader_score *= 0.3;
+						$director_score *= 0.45;
+						$b['peer'][] = $team_score;
+						$b['leader'][] = $leader_score;
+						$b['director'][] = $director_score;
+						$b['overall'][] = $team_score + $leader_score + $director_score;
+						$b['countmembers']++;
+						
+						$b['team_name'][] = $old_tem_name;
+						$b['lastname'][] = $old_lastname;
+						$b['firstname'][] = $old_firstname;
+						$b['middle'][] = $old_middle;
+					}
+					$director_score = 0; $team_score = 0; $leader_score = 0; $director_count = 0; $team_count = 0; $leader_count = 0;
+				}
+				if( $data_users['role_ev']==0 ){
+					$director_score += (($data_users['work_rate'] + $data_users['behavior_rate'])/2);
+					$director_count++;
+				}else if( $data_users['role_ev']==1 ){
+					$leader_score += (($data_users['work_rate'] + $data_users['behavior_rate'])/2);
+					$leader_count++;
+				}else{
+					$team_score += (($data_users['work_rate'] + $data_users['behavior_rate'])/2);
+					$team_count++;
+				}
+				$old_role = $data_users['role'];
+				$old_tem_id = $data_users['team_id'];
+				$old_tem_name = $data_users['team_name'];
+				$old_lastname = $data_users['lastname'];
+				$old_firstname = $data_users['firstname'];
+				$old_middle = $data_users['middle'];
+			}
+			
+			//if(!$insert){
+			if(!$team_count) $team_count = 1;
+			if(!$director_count) $director_count = 1;
+			if(!$leader_count) $leader_count = 1;
+			
+			$team_score /= $team_count;
+			$director_score /= $director_count;
+			$leader_score /= $leader_count;
+			//print($leader_score);
+			
+			if( $old_role==1 ){
+				$team_score *= 0.2;
+				$leader_score *= 0.3;
+				$director_score *= 0.4;
+				$members = $this->members( $old_tem_id, $data['user_id'] );
+				$members *= 0.1;
+				
+				$b['team_nameOthers'][] = $old_tem_name;
+				$b['result_of_members'][] = $members;
+				$b['perrLeader'][] = $team_score;
+				$b['leaderLeader'][] = $leader_score;
+				$b['directorLeader'][] = $director_score;
+				$b['overallLeader'][] = $team_score + $leader_score + $director_score + $members;
+				$b['countLeader']++;
+				
+				$b['lastnameOther'][] = $old_lastname;
+				$b['firstnameOther'][] = $old_firstname;
+				$b['middleOther'][] = $old_middle;
+			}else{
+				$team_score *= 0.25;
+				$leader_score *= 0.3;
+				$director_score *= 0.45;
+				$b['peer'][] = $team_score;
+				$b['leader'][] = $leader_score;
+				$b['director'][] = $director_score;
+				$b['overall'][] = $team_score + $leader_score + $director_score;
+				$b['countmembers']++;
+				
+				$b['team_name'][] = $old_tem_name;
+				$b['lastname'][] = $old_lastname;
+				$b['firstname'][] = $old_firstname;
+				$b['middle'][] = $old_middle;
+			}
+		}
 		$this->load->view('templates/head', $data);
 		$this->load->view('templates/body');
-		//$this->load->view('evaluation/evalForm');
+		$this->load->view('evaluation/resultForm', $b);
 		$this->load->view('templates/footer');
 	}
 	
-	public function people(){
+	function members( $old_tem_id, $myId ){
+		$list_of_members = $this->User_model->leadersMembersResults($old_tem_id);
+		$director_score = 0; $team_score = 0; $leader_score = 0; $director_count = 0; $team_count = 0; $leader_count = 0;
+		$first_id = $list_of_members[0]['user_id']; $sumAll = 0; $countAll = 0;
+		foreach( $list_of_members as $data_users ){
+			if($myId != $data_users['user_id']){
+				if( $first_id != $data_users['user_id'] ){
+					$first_id = $data_users['user_id'];
+					if(!$team_count) $team_count = 1;
+					if(!$director_count) $director_count = 1;
+					if(!$leader_count) $leader_count = 1;
+				
+					$team_score /= $team_count;
+					$director_score /= $director_count;
+					$leader_score /= $leader_count;
+						
+					$team_score *= 0.25;
+					$leader_score *= 0.3;
+					$director_score *= 0.45;
+					$sumAll += $team_score + $leader_score + $director_score;
+					$countAll++;
+					$director_score = 0; $team_score = 0; $leader_score = 0; $director_count = 0; $team_count = 0; $leader_count = 0;
+				}
+				if( $data_users['role_ev']==0 ){
+					$director_score += (($data_users['work_rate'] + $data_users['behavior_rate'])/2);
+					$director_count++;
+				}else if( $data_users['role_ev']==1 ){
+					$leader_score += (($data_users['work_rate'] + $data_users['behavior_rate'])/2);
+					$leader_count++;
+				}else{
+					$team_score += (($data_users['work_rate'] + $data_users['behavior_rate'])/2);
+					$team_count++;
+				}
+			}
+		}
+		if(!$team_count) $team_count = 1;
+		if(!$director_count) $director_count = 1;
+		if(!$leader_count) $leader_count = 1;
+		
+		$team_score /= $team_count;
+		$director_score /= $director_count;
+		$leader_score /= $leader_count;
+			
+		$team_score *= 0.25;
+		$leader_score *= 0.3;
+		$director_score *= 0.45;
+		$sumAll += $team_score + $leader_score + $director_score;
+		
+		if(!$countAll) $countAll = 1;
+		//print($countAll);
+		$sumAll /= $countAll;
+		return $sumAll;
+	}
+	
+	public function people($message=Null){
 		$data = $this->getInfo();
 		$data['title'] = "eUP Performance Evaluation | Evaluate";
 		$data['active_nav'] = 'ANSWERFORM';
@@ -134,7 +308,8 @@ class Answer extends CI_Controller {
 					if( $array_data['id'] != $data['user_id'] ){
 						$OtherTeam = $this->User_model->getDataBase('team_member',$array_data['id'], '', 'user_id');
 						//var_dump($OtherTeam);
-						$teamForm = $this->User_model->getDataBase('evaluation_results',$teamLeaders[0]['id'], $data['user_id'], 'user_id');
+						$teamForm = $this->User_model->getDataBase('evaluation_results',$array_data['id'], $data['user_id'], 'user_id');
+						//var_dump($array_data['id']);
 						$teamName = $this->User_model->getDataBase('team',$OtherTeam[0]['team_id'], '', 'id');
 						
 						if( !empty($teamForm) ) $b['doneOther'][] = 1;
@@ -150,6 +325,7 @@ class Answer extends CI_Controller {
 				}
 			}
 		}
+		$b['message'] = $message;
 		$this->load->view('templates/head', $data);
 		$this->load->view('templates/body');
 		$this->load->view('evaluation/personnel', $b);
@@ -203,7 +379,8 @@ class Answer extends CI_Controller {
 		else{
 			$userSlug = $this->User_model->getDataBase('users',$userSlug, '','slug');
 			$this->FormSave->saveForms($names, $userSlug[0]['id']);
-			print('GREAT!');
+			$message = "Form has been submitted.";
+			$this->people($message);
 		}
 	}
 

@@ -12,6 +12,13 @@
 	<div class="span9">
 		<div class="topliner">
 			<div class="content">
+				<?php if(!empty($message)){ ?>
+					<div class="alert alert-block alert-success">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+					  <h4><strong>Success!</strong></h4>
+					  <?php echo $message; ?>
+					</div>
+				<?php }?>
 				<?php if($role==1 || $role==0){?>
 					<p class="pull-right">
 						<a href="#myModal" role="button" data-toggle="modal" data-placement="left" title data-original-title="Invite a Member" class="btn btn-warning"><i class="fui-plus"></i></a>

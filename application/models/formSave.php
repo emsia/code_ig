@@ -12,6 +12,7 @@ class FormSave extends CI_Model {
 	function saveForms($names, $user_id){
 		$date = date('Y-m-d G:i:s');;
 		$evaluator = $this->getUid();
+		$totalWC = 0; $totalBC = 0;
 		
 		for($i=0; $i<5;$i++)
 			$totalWC = $totalWC + $_POST[$names[$i]] ;

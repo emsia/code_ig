@@ -62,8 +62,30 @@ class User_model extends CI_Model {
 	}
 	
 	function getAllUsers(){
-		$query = $this->db->get('users');
+		$this->db->order_by('lastname', 'ASC');
+		$this->db->from('users');
+		$query = $this->db->get();
 		return $query->result_array();
 	}
+	
+	function getAllUsers_evaluationResults(){
+		$sql = "select distinct E.user_id, E.comments_id, E.work_rate, E.behavior_rate, U.lastname, U.firstname, U.middle, TM.team_id, T.short_name as team_name, U.role, R.role as role_ev
+					from evaluation_results E, users U, team T, team_member TM
+					join users R
+					where (E.user_id=U.id AND E.user_id=TM.user_id) AND TM.team_id=T.id AND R.id=E.evaluator order by U.lastname ASC";
+		
+		$query = $this->db->query($sql);
+		return $query->result_array();
+	}
+	
+	function leadersMembersResults($team_id){
+		$sql = "select distinct E.user_id, E.work_rate, E.behavior_rate, R.role as role_ev
+					from evaluation_results E, users U, team T, team_member TM
+					join users R
+					where (TM.team_id=$team_id AND TM.user_id=E.user_id) AND R.id=E.evaluator order by E.user_id";
+		$query = $this->db->query($sql);
+		return $query->result_array();			
+	}
+	
 }
 ?>
