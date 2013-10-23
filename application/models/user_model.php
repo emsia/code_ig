@@ -45,10 +45,10 @@ class User_model extends CI_Model {
 			'username'	=> $_POST['username'],
 			'email'			=> $_POST['email'],
 			'password'	=> sha1($_POST['password']),
-			'middle'		=> $_POST['middleName'],
-			'firstname'	=> $_POST['firtsName'],
-			'lastname'	=> $_POST['lastName'],
-			'role'			=> 3,
+			'middle'		=> ucwords($_POST['middleName']),
+			'firstname'	=> ucwords($_POST['firtsName']),
+			'lastname'	=> ucwords($_POST['lastName']),
+			'role'			=> 2,
 			'verified'		=> 0,
 			'slug'			=> $this->saltgen(25),
 		);
@@ -95,6 +95,11 @@ class User_model extends CI_Model {
 					ORDER BY evaluatorLast ASC";
 		
 		$query = $this->db->query($sql);
+		return $query->result_array();
+	}
+	
+	function getTeams(){
+		$query = $this->db->get('team');
 		return $query->result_array();
 	}
 	

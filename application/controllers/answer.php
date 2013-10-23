@@ -204,6 +204,14 @@ class Answer extends CI_Controller {
 		$data['active_nav'] = 'RESULT';
 		
 		$user_slug = $this->User_model->getDataBase('users',$num, '','slug');
+		if(empty($user_slug)){
+			$this->load->view('templates/head', $data);
+			//$this->load->view('templates/body');
+			$this->load->view('templates/errors');
+			$this->load->view('templates/footer');
+			return;
+		}
+		
 		$list = $this->User_model->getME($user_slug[0]['id']);
 		//var_dump($list);		
 		$b = array();
@@ -246,6 +254,11 @@ class Answer extends CI_Controller {
 	
 	public function people($message=Null){
 		$data = $this->getInfo();
+		$teams = $this->getTeams();
+		foreach( $teams as $team ){
+			$data['teams'][] = $team['team_name'];
+		}
+		
 		$data['title'] = "eUP Performance Evaluation | Evaluate";
 		$data['active_nav'] = 'ANSWERFORM';
 		$data['count'] = 0; $data['countOtherTeam'] = 0;
@@ -290,6 +303,7 @@ class Answer extends CI_Controller {
 			
 			//var_dump($teamName);
 			//print($data['team_name']);
+			if(!empty($user_teamId)){
 			$team = $this->User_model->getDataBase('team_member',$user_teamId[0]['team_id'], '', 'team_id');
 			//print($team);
 			//var_dump($team);
@@ -375,6 +389,10 @@ class Answer extends CI_Controller {
 					}
 				}
 			}
+			} else {
+				$message = "You are not part of a team yet.";
+				$data['count'] = -1;
+			}	
 		}
 		$b['message'] = $message;
 		$this->load->view('templates/head', $data);
@@ -445,6 +463,12 @@ class Answer extends CI_Controller {
 		$data['role'] = $name['role'];
 		return $data;
 	}
+	
+	public function getTeams(){		
+		$listTeam = $this->User_model->getTeams();
+		return $listTeam;
+	}
+	
 }
 
 ?>
