@@ -24,7 +24,7 @@
 							<th style="width: 12%"><span  data-placement="top" title data-original-title="Quality of Work">Q1</span></th>
 							<th style="width: 12%"><span data-placement="top" title data-original-title="Quantity of Work">Q2</span></th>
 							<th style="width: 12%"><span data-placement="top" title data-original-title="Job Knowledge">Q3</span></th>
-							<th style="width: 12%"><span data-placement="top" title data-original-title="Reliability4">Q4</span></th>
+							<th style="width: 12%"><span data-placement="top" title data-original-title="Reliability">Q4</span></th>
 							<th style="width: 12%"><span data-placement="top" title data-original-title="Learning Ability">Q5</span></th>
 							<th style="width: 10%">Average</th>
 						</tr>

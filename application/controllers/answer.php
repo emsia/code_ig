@@ -6,7 +6,7 @@ class Answer extends CI_Controller {
 		parent::__construct();
 		$this->load->library(array('session', 'form_validation'));
 		$this->load->helper(array('url', 'form'));
-		$this->load->model(array('User_model', 'FormSave'));
+		$this->load->model(array('user_model', 'FormSave'));
 	}
 	
 	public function results(){
@@ -14,7 +14,7 @@ class Answer extends CI_Controller {
 		$data['title'] = "eUP Performance Evaluation | Results";
 		$data['active_nav'] = 'RESULT';
 		
-		$allUsers = $this->User_model->getAllUsers_evaluationResults();
+		$allUsers = $this->user_model->getAllUsers_evaluationResults();
 		//var_dump($allUsers);
 		$b = array();
 		
@@ -145,7 +145,7 @@ class Answer extends CI_Controller {
 	}
 	
 	function members( $old_tem_id, $myId ){
-		$list_of_members = $this->User_model->leadersMembersResults($old_tem_id);
+		$list_of_members = $this->user_model->leadersMembersResults($old_tem_id);
 		$director_score = 0; $team_score = 0; $leader_score = 0; $director_count = 0; $team_count = 0; $leader_count = 0;
 		$first_id = $list_of_members[0]['user_id']; $sumAll = 0; $countAll = 0;
 		foreach( $list_of_members as $data_users ){
@@ -203,8 +203,16 @@ class Answer extends CI_Controller {
 		$data['title'] = "eUP Performance Evaluation | Details";
 		$data['active_nav'] = 'RESULT';
 		
-		$user_slug = $this->User_model->getDataBase('users',$num, '','slug');
-		$list = $this->User_model->getME($user_slug[0]['id']);
+		$user_slug = $this->user_model->getDataBase('users',$num, '','slug');
+		if(empty($user_slug)){
+			$this->load->view('templates/head', $data);
+			//$this->load->view('templates/body');
+			$this->load->view('templates/errors');
+			$this->load->view('templates/footer');
+			return;
+		}
+		
+		$list = $this->user_model->getME($user_slug[0]['id']);
 		//var_dump($list);		
 		$b = array();
 		$b['count'] = 0;
@@ -252,12 +260,12 @@ class Answer extends CI_Controller {
 		$b = array(); $c = array();
 		
 		if($data['role']==0){
-			$all = $this->User_model->getAllUsers();
+			$all = $this->user_model->getAllUsers();
 			foreach( $all as $array_data ){		
 				if( $array_data['id'] != $data['user_id'] ){
-					$OtherTeam = $this->User_model->getDataBase('team_member',$array_data['id'], '', 'user_id');					
-					$teamForm = $this->User_model->getDataBase('evaluation_results',$array_data['id'], $data['user_id'], 'user_id');
-					$teamName = $this->User_model->getDataBase('team',$OtherTeam[0]['team_id'], '', 'id');
+					$OtherTeam = $this->user_model->getDataBase('team_member',$array_data['id'], '', 'user_id');					
+					$teamForm = $this->user_model->getDataBase('evaluation_results',$array_data['id'], $data['user_id'], 'user_id');
+					$teamName = $this->user_model->getDataBase('team',$OtherTeam[0]['team_id'], '', 'id');
 					
 					if($array_data['role']==1){					
 						if( !empty($teamForm) ) $b['doneOther'][] = 1;
@@ -284,21 +292,22 @@ class Answer extends CI_Controller {
 			}
 			//seperate users from team leaders and members
 		} else{
-			$user_teamId = $this->User_model->getDataBase('team_member',$data['user_id'], '', 'user_id');
+			$user_teamId = $this->user_model->getDataBase('team_member',$data['user_id'], '', 'user_id');
 			//var_dump($user_teamId);
 			//print($user_teamId['team_id']); 
 			
 			//var_dump($teamName);
 			//print($data['team_name']);
-			$team = $this->User_model->getDataBase('team_member',$user_teamId[0]['team_id'], '', 'team_id');
+			if(!empty($user_teamId)){
+			$team = $this->user_model->getDataBase('team_member',$user_teamId[0]['team_id'], '', 'team_id');
 			//print($team);
 			//var_dump($team);
 			foreach( $team as $array_data ){
 				//print($array_data['user_id']."<br/>");
 				if( $array_data['user_id'] != $data['user_id'] ){
-					$teamMembers = $this->User_model->getDataBase('users',$array_data['user_id'], '', 'id');
-					$teamForm = $this->User_model->getDataBase('evaluation_results',$teamMembers[0]['id'], $data['user_id'], 'user_id');
-					$teamName = $this->User_model->getDataBase('team',$user_teamId[0]['team_id'], '', 'id');
+					$teamMembers = $this->user_model->getDataBase('users',$array_data['user_id'], '', 'id');
+					$teamForm = $this->user_model->getDataBase('evaluation_results',$teamMembers[0]['id'], $data['user_id'], 'user_id');
+					$teamName = $this->user_model->getDataBase('team',$user_teamId[0]['team_id'], '', 'id');
 					//print($teamMembers[0]['lastname']);
 					if( !empty($teamForm) ) $b['done'][] = 1;
 					else $b['done'][] = 0;
@@ -313,12 +322,12 @@ class Answer extends CI_Controller {
 			}	
 			
 			if( $user_teamId[0]['team_id'] != 1 ){
-				$team = $this->User_model->getDataBase('team_member',1, '', 'team_id');
+				$team = $this->user_model->getDataBase('team_member',1, '', 'team_id');
 				foreach( $team as $array_data ){
-					$teamMembers = $this->User_model->getDataBase('users',$array_data['user_id'], '','id');
+					$teamMembers = $this->user_model->getDataBase('users',$array_data['user_id'], '','id');
 					if( $data['role']==1 && $teamMembers[0]['role']==1 ) continue;
-					$teamForm = $this->User_model->getDataBase('evaluation_results',$teamMembers[0]['id'], $data['user_id'], 'user_id');
-					$teamName = $this->User_model->getDataBase('team',1, '', 'id');
+					$teamForm = $this->user_model->getDataBase('evaluation_results',$teamMembers[0]['id'], $data['user_id'], 'user_id');
+					$teamName = $this->user_model->getDataBase('team',1, '', 'id');
 					//print($teamMembers[0]['lastname']);
 					if( !empty($teamForm) ) $b['done'][] = 1;
 					else $b['done'][] = 0;
@@ -333,12 +342,12 @@ class Answer extends CI_Controller {
 			}
 			
 			if( $user_teamId[0]['team_id'] != 10 ){
-				$team = $this->User_model->getDataBase('team_member',10, '', 'team_id');
+				$team = $this->user_model->getDataBase('team_member',10, '', 'team_id');
 				foreach( $team as $array_data ){
-					$teamMembers = $this->User_model->getDataBase('users',$array_data['user_id'], '', 'id');
+					$teamMembers = $this->user_model->getDataBase('users',$array_data['user_id'], '', 'id');
 					if( $data['role']==1 && $teamMembers[0]['role']==1 ) continue;
-					$teamForm = $this->User_model->getDataBase('evaluation_results',$teamMembers[0]['id'], $data['user_id'], 'user_id');
-					$teamName = $this->User_model->getDataBase('team',10, '', 'id');
+					$teamForm = $this->user_model->getDataBase('evaluation_results',$teamMembers[0]['id'], $data['user_id'], 'user_id');
+					$teamName = $this->user_model->getDataBase('team',10, '', 'id');
 					//print($teamMembers[0]['lastname']);
 					if( !empty($teamForm) ) $b['done'][] = 1;
 					else $b['done'][] = 0;
@@ -353,15 +362,15 @@ class Answer extends CI_Controller {
 			}
 					
 			if( $data['role']==1 ){
-				$teamLeaders = $this->User_model->getDataBase('users',1, '', 'role');
+				$teamLeaders = $this->user_model->getDataBase('users',1, '', 'role');
 				//var_dump($teamLeaders);
 				foreach( $teamLeaders as $array_data ){
 					if( $array_data['id'] != $data['user_id'] ){
-						$OtherTeam = $this->User_model->getDataBase('team_member',$array_data['id'], '', 'user_id');
+						$OtherTeam = $this->user_model->getDataBase('team_member',$array_data['id'], '', 'user_id');
 						//var_dump($OtherTeam);
-						$teamForm = $this->User_model->getDataBase('evaluation_results',$array_data['id'], $data['user_id'], 'user_id');
+						$teamForm = $this->user_model->getDataBase('evaluation_results',$array_data['id'], $data['user_id'], 'user_id');
 						//var_dump($array_data['id']);
-						$teamName = $this->User_model->getDataBase('team',$OtherTeam[0]['team_id'], '', 'id');
+						$teamName = $this->user_model->getDataBase('team',$OtherTeam[0]['team_id'], '', 'id');
 						
 						if( !empty($teamForm) ) $b['doneOther'][] = 1;
 						else $b['doneOther'][] = 0;
@@ -375,6 +384,10 @@ class Answer extends CI_Controller {
 					}
 				}
 			}
+			} else {
+				$message = "You are not part of a team yet.";
+				$data['count'] = -1;
+			}	
 		}
 		$b['message'] = $message;
 		$this->load->view('templates/head', $data);
@@ -386,7 +399,7 @@ class Answer extends CI_Controller {
 	public function FormEvaluate( $num, $data = Null ){
 		//$temp = $_POST['userToEvaluate'];
 		//print($num);
-		$teamData = $this->User_model->getDataBase('users',$num, '','slug');
+		$teamData = $this->user_model->getDataBase('users',$num, '','slug');
 		$temp = $data['errors'];
 		$data = $this->getInfo();
 		$data['errors'] = $temp;
@@ -428,7 +441,7 @@ class Answer extends CI_Controller {
 			$this->FormEvaluate($userSlug,$data);
 		}
 		else{
-			$userSlug = $this->User_model->getDataBase('users',$userSlug, '','slug');
+			$userSlug = $this->user_model->getDataBase('users',$userSlug, '','slug');
 			$this->FormSave->saveForms($names, $userSlug[0]['id']);
 			$message = "Form has been submitted.";
 			$this->people($message);
@@ -437,7 +450,7 @@ class Answer extends CI_Controller {
 
 	public function getInfo(){
 		$username = $this->session->userdata('username');
-		$name = $this->User_model->getName($username);
+		$name = $this->user_model->getName($username);
 		$data['firstname'] = $name['firstname'];
 		$data['lastname'] = $name['lastname'];
 		$data['middle'] = $name['middle'];
