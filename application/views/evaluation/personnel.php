@@ -12,7 +12,7 @@
 	<div class="span9">
 		<div class="topliner">
 			<div class="content">
-				<?php if(!empty($message) && $count>0){ ?>
+				<?php if(!empty($message) && $count>=0){ ?>
 					<div class="alert alert-block alert-success">
 						<button type="button" class="close" data-dismiss="alert">&times;</button>
 					  <h4><strong>Success!</strong></h4>
@@ -127,22 +127,26 @@
 			<h3 class="text-white">Enter to a Team</h3>
 		</div>
 		<div class="modal-body">
-			<form class="form form-horizontal" action="." method="post"><center>
+			<form class="form form-horizontal" action="." method="post"><center>			
+			<?php if($teamCount){?>
 			<div class="control-group">
 				<label class="control-label" for="level">Team Name</label>
 				<div class="controls">
-					<select class="select span12" multiple name="select_me[]">
 					<select id="id_select" name="id_select[]" class="select span12" multiple>
-						<?php foreach( $teams as $team ){?>
-							<option><?php echo $team?></option>
+						<?php for( $i=0; $i<$teamCount;$i++ ){?>
+							<option value="<?php echo $team_id[$i]?>"><?php echo $team_s[$i]?></option>
 						<?php }?>
 					</select>
 				</div>
 			</div>
+			<?php } else {?>
+				<span class="text-error">There are no Teams yet.</span>
+			<?php }?>
 			</center>
 		</div>
-		<div class="modal-footer"> 
-			<button type="submit" name="sendTeamName"  class="btn btn-primary pull-left" >Enter <span class="fui-check"></span></button>
+		<div class="modal-footer">
+			<?php if($teamCount){ ?>
+			<button type="submit" name="sendTeamName"  class="btn btn-primary pull-left" >Enter <span class="fui-check"></span></button><?php }?>
 			<button type="button" class="btn btn-warning" data-dismiss="modal" aria-hidden="true">Cancel <i class="fui-new"></i></button>
 		</div>
 	</div>

@@ -27,20 +27,21 @@ class User_model extends CI_Model {
 	function getName($uname){
 		$query = $this->db->get_where('users',array('username' => $uname));
 		return $query->row_array();
+	}	
+	
+	function teamAssoc($team_id, $user_id){
+		$data = array(
+			'team_id' => $team_id,
+			'user_id' => $user_id
+		);
+		$sql = "select * from team_member TM where TM.team_id=$team_id AND TM.user_id=$user_id";
+		$test = $this->db->query($sql);		
+		if(!count($test->result_array())){
+			$this->db->insert('team_member', $data);
+		}
 	}
 	
-	function saltgen($max){
-        $characterList = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        $i = 0;
-        $salt = "";
-        while ($i < $max) {
-            $salt .= $characterList{mt_rand(0, (strlen($characterList) - 1))};
-            $i++;
-        }
-        return $salt;
-	}
-	
-	function insertData(){
+	function insertData($slug){
 		$data = array(
 			'username'	=> $_POST['username'],
 			'email'			=> $_POST['email'],
@@ -50,7 +51,7 @@ class User_model extends CI_Model {
 			'lastname'	=> ucwords($_POST['lastName']),
 			'role'			=> 2,
 			'verified'		=> 0,
-			'slug'			=> $this->saltgen(25),
+			'slug'			=> $slug,
 		);
 		$this->db->insert('users', $data);
 	}

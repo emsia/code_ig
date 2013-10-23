@@ -87,7 +87,8 @@ class Welcome extends CI_Controller {
 			$this->load->view('templates/login');
 			$this->load->view('templates/footer');
 		}else{
-			$this->user_model->insertData();
+			$sent = $this->sendEmail($_POST['email']);
+			if($sent) $this->user_model->insertData($sent);
 			$data['title'] = "eUP Performance Evaluation | Confirm";
 			$data['login'] = 2;
 			$this->load->view('templates/head', $data);
@@ -95,6 +96,30 @@ class Welcome extends CI_Controller {
 			$this->load->view('templates/footer');
 		}
 	}
+	
+	private function saltgen($max){
+			$characterList = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+			$i = 0;
+			$salt = "";
+			while ($i < $max) {
+				$salt .= $characterList{mt_rand(0, (strlen($characterList) - 1))};
+				$i++;
+			}
+			return $salt;
+		}
+	
+	 public function sendEmail($email){
+		$this->load->library('email');
+		$this->email->from('eupeval@gmail.com', 'eUP Admin');
+		$this->email->to($email);
+		$data['key'] = $this->saltgen(25);
+
+		$this->email->subject('Account Confirmation | eUP Evaluation');
+		$this->email->message($this->load->view( 'templates/email', $data, true ));
+		if( !$this->email->send() ) return 0;
+		//echo $result;
+		return $data['key'];
+	 }
 	 
 	public function loginSubmit(){
 		$config = array(

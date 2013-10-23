@@ -252,19 +252,25 @@ class Answer extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 	
-	public function postTeam(){
+	public function postTeam(){		
+		$data = $this->getInfo();
 		$names = $_POST['id_select'];
 		//print($name[1]);
 		foreach($names as $name){
-			//print($name);
+			$this->user_model->teamAssoc($name, $data['user_id']);
 		}
+		$this->people("You are successfully added to the team.");
+		return;
 	}
-	
+		
 	public function people($message=Null){
 		$data = $this->getInfo();
 		$teams = $this->getTeams();
+		$data['teamCount'] = 0;
 		foreach( $teams as $team ){
-			$data['teams'][] = $team['team_name'];
+			$data['team_s'][] = $team['team_name'];
+			$data['team_id'][] = $team['id'];
+			$data['teamCount']++;
 		}
 		
 		$data['title'] = "eUP Performance Evaluation | Evaluate";
