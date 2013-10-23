@@ -98,5 +98,10 @@ class User_model extends CI_Model {
 		return $query->result_array();
 	}
 	
+	function getTeams(){
+		$query = $this->db->get('team');
+		return $query->result_array();
+	}
+	
 }
 ?>

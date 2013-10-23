@@ -13,7 +13,7 @@ class Welcome extends CI_Controller {
 	public function index( $data = Null )
 	{	
 		if ( $this->islogged() )
-			redirect('http://localhost/code_ig/index.php/home');
+			redirect('http://localhost/eupeval/index.php/home');
 		$data['title'] = "eUP Performance Evaluation | Login";
 		$this->load->view('templates/head', $data);
 		$this->load->view('templates/login');
@@ -131,13 +131,13 @@ class Welcome extends CI_Controller {
 			
 			$result = $this->user_model->getuid($uname);
 			$this->log($uname,$result['role']);
-			redirect('http://localhost/code_ig/index.php/home');
+			redirect('http://localhost/eupeval/index.php/home');
 		}
 	}
 	
 	public function logout(){
 		$this->session->sess_destroy();
-		redirect('http://localhost/code_ig/');
+		redirect('http://localhost/eupeval/');
 	}
 	
 	private function log($uname, $role){

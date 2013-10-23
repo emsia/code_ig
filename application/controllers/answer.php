@@ -252,8 +252,21 @@ class Answer extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 	
+	public function postTeam(){
+		$names = $_POST['id_select'];
+		//print($name[1]);
+		foreach($names as $name){
+			//print($name);
+		}
+	}
+	
 	public function people($message=Null){
 		$data = $this->getInfo();
+		$teams = $this->getTeams();
+		foreach( $teams as $team ){
+			$data['teams'][] = $team['team_name'];
+		}
+		
 		$data['title'] = "eUP Performance Evaluation | Evaluate";
 		$data['active_nav'] = 'ANSWERFORM';
 		$data['count'] = 0; $data['countOtherTeam'] = 0;
@@ -458,6 +471,12 @@ class Answer extends CI_Controller {
 		$data['role'] = $name['role'];
 		return $data;
 	}
+	
+	public function getTeams(){		
+		$listTeam = $this->user_model->getTeams();
+		return $listTeam;
+	}
+	
 }
 
 ?>

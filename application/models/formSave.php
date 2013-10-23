@@ -6,7 +6,7 @@ class FormSave extends CI_Model {
 		$this->load->database();
 		$this->load->helper('url');
 		date_default_timezone_set("Asia/Manila");
-		include($_SERVER['DOCUMENT_ROOT'] .'/code_ig/application/controllers/welcome.php');
+		include($_SERVER['DOCUMENT_ROOT'] .'/eupeval/application/controllers/welcome.php');
 	}
 	
 	function saveForms($names, $user_id){

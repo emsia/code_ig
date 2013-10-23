@@ -7,7 +7,7 @@
 		    })
 	    });
 	</script>
-	<?php include_once($_SERVER['DOCUMENT_ROOT'] .'/code_ig/application/views/templates/sidebar.php')?>
+	<?php include_once($_SERVER['DOCUMENT_ROOT'] .'/eupeval/application/views/templates/sidebar.php')?>
 	<?php $this->load->helper('form'); ?>
 	<div class="span9">
 		<div class="topliner">
@@ -121,8 +121,9 @@
 		</div>	
 	</div>
 	
+	<?php echo form_open('answer/postTeam');?>
 	<div id="enter" class="modal hide fade" data-backdrop="static">
-		<div class="modal-header palette-emerald">
+		<div class="modal-header palette-orange">
 			<h3 class="text-white">Enter to a Team</h3>
 		</div>
 		<div class="modal-body">
@@ -131,8 +132,9 @@
 				<label class="control-label" for="level">Team Name</label>
 				<div class="controls">
 					<select class="select span12" multiple name="select_me[]">
-						<?php foreach($teams as $team){ ?>
-							<option><?php echo $team;?></option>
+					<select id="id_select" name="id_select[]" class="select span12" multiple>
+						<?php foreach( $teams as $team ){?>
+							<option><?php echo $team?></option>
 						<?php }?>
 					</select>
 				</div>
@@ -140,9 +142,10 @@
 			</center>
 		</div>
 		<div class="modal-footer"> 
-			<button type="submit" name="gradesys-send"  class="btn btn-primary pull-left" >Enroll <span class="fui-check"></span></button>
+			<button type="submit" name="sendTeamName"  class="btn btn-primary pull-left" >Enter <span class="fui-check"></span></button>
 			<button type="button" class="btn btn-warning" data-dismiss="modal" aria-hidden="true">Cancel <i class="fui-new"></i></button>
 		</div>
 	</div>
+	<?php echo form_close();?>
 
 </div>

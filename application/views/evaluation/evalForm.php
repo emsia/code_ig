@@ -11,7 +11,7 @@
 			padding-left: 100px;
 		}
 	</style>
-	<?php include_once($_SERVER['DOCUMENT_ROOT'] .'/code_ig/application/views/templates/sidebar.php')?>
+	<?php include_once($_SERVER['DOCUMENT_ROOT'] .'/eupeval/application/views/templates/sidebar.php')?>
 	<?php $this->load->helper('form'); ?>
 	<div class="span9">
 		<div class="topliner">
