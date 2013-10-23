@@ -131,6 +131,7 @@
 		</div>	
 	</div>
 	
+	<?php echo form_open('answer/postTeam');?>
 	<div id="enter" class="modal hide fade" data-backdrop="static">
 		<div class="modal-header palette-orange">
 			<h3 class="text-white">Enter to a Team</h3>
@@ -140,7 +141,7 @@
 			<div class="control-group">
 				<label class="control-label" for="level">Team Name</label>
 				<div class="controls">
-					<select id="id_select" class="select span12" multiple>
+					<select id="id_select" name="id_select[]" class="select span12" multiple>
 						<?php foreach( $teams as $team ){?>
 							<option><?php echo $team?></option>
 						<?php }?>
@@ -150,9 +151,10 @@
 			</center>
 		</div>
 		<div class="modal-footer"> 
-			<button type="submit" name="gradesys-send"  class="btn btn-primary pull-left" >Enroll <span class="fui-check"></span></button>
+			<button type="submit" name="sendTeamName"  class="btn btn-primary pull-left" >Enter <span class="fui-check"></span></button>
 			<button type="button" class="btn btn-warning" data-dismiss="modal" aria-hidden="true">Cancel <i class="fui-new"></i></button>
 		</div>
 	</div>
+	<?php echo form_close();?>
 
 </div>

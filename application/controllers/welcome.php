@@ -7,7 +7,7 @@ class Welcome extends CI_Controller {
 		parent::__construct();
 		$this->load->library(array('session', 'form_validation', 'session'));
 		$this->load->helper('url');
-		$this->load->model('User_model');
+		$this->load->model('user_model');
 	}
 	
 	public function index( $data = Null )
@@ -87,7 +87,7 @@ class Welcome extends CI_Controller {
 			$this->load->view('templates/login');
 			$this->load->view('templates/footer');
 		}else{
-			$this->User_model->insertData();
+			$this->user_model->insertData();
 			$data['title'] = "eUP Performance Evaluation | Confirm";
 			$data['login'] = 2;
 			$this->load->view('templates/head', $data);
@@ -118,18 +118,18 @@ class Welcome extends CI_Controller {
 		}else{
 			$uname = $this->input->post('username');
 			$pword = $this->input->post('password');
-			if(!$this->User_model->verifynameAndPass($uname,$pword)){
+			if(!$this->user_model->verifynameAndPass($uname,$pword)){
 				$data['errors'] = "Invalid username and password combination.";//"Your Account is not yet Verified. Please Confirm it first using email.";
 				$this->index($data);
 				return;
 			}
-			if( !$this->User_model->verifynameAndPass($uname,$pword, 1)){
+			if( !$this->user_model->verifynameAndPass($uname,$pword, 1)){
 				$data['errors'] = "Account not yet Verified. Check your email.";
 				$this->index($data);
 				return;
 			}
 			
-			$result = $this->User_model->getuid($uname);
+			$result = $this->user_model->getuid($uname);
 			$this->log($uname,$result['role']);
 			redirect('http://localhost/eupeval/index.php/home');
 		}
@@ -148,7 +148,7 @@ class Welcome extends CI_Controller {
 	
 	public function detals_of_users( ){
 		$username = $this->session->userdata('username');
-		$name = $this->User_model->getName($username);
+		$name = $this->user_model->getName($username);
 		$data['firstname'] = $name['firstname'];
 		$data['lastname'] = $name['lastname'];
 		$data['middle'] = $name['middle'];
