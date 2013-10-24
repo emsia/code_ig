@@ -92,7 +92,7 @@
 			</div>	
 			<hr>					
 			<div id="Job">
-				<img class="title-icons" src="<?php echo base_url('images/icons/png/watches.png'); ?>">
+				<img class="title-icons" src="<?php echo base_url('images/icons/png/Watches.png'); ?>">
 				<h2 class="title">Critical Job Element Definitions</h2>
 				<p>Please read the critical job element definitions prior to conducting the evaluation. These job elements are rated from 1-5:
 				<ul>

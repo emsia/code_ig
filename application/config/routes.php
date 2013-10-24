@@ -42,10 +42,11 @@ $route['default_controller'] = 'welcome';
 $route['home'] = 'answer/process';
 $route['answer/results'] = 'answer/results';
 $route['answer/FormEvaluate'] = 'answer/FormEvaluate';
+$route['answer/submit_evalform'] = 'answer/submit_evalform';
 $route['answer/people'] = 'answer/people';
 $route['answer/process'] = 'answer/process';
 $route['404_override'] = 'welcome/errors';
-
+$route['logout'] = 'welcome/logout';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

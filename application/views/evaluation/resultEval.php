@@ -14,6 +14,60 @@
 			<div class="content">
 				Summary Evaluation for: <h3><?php echo$lastname_of_cliked.", ".$firstname_of_cliked." ".$middlename_of_cliked; ?></h3><br/>
 				<?php if($count){ ?>
+
+				<img class="title-icons" src="<?php echo base_url('images/icons/svg/map.svg'); ?>" >
+				<h3 class="title">Score Summary</h3>
+				<?php if($roleOfClicked==0 ||$roleOfClicked==1 || $roleOfClicked==3){?>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Evaluation for Team Members(10%)</th>
+							<th>Team Members(20%)</th>
+							<th>Team Leaders(30%)</th>
+							<th>Director(40%)</th>
+							<th>OverAll(100%)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php for($j=0; $j<$countLeader; $j++){ ?>
+							<?php if($user_idOther[$j]==$idOfClicked){ ?>
+								<tr>
+									<td><?php echo round($result_of_members[$j], 2);?></td>
+									<td><?php echo round($perrLeader[$j], 2);?></td>
+									<td><?php echo round($leaderLeader[$j], 2);?></td>
+									<td><?php echo round($directorLeader[$j], 2);?></td>
+									<td class="text-error"><b><?php echo round($overallLeader[$j], 2);?></b></td>
+								</tr>
+							<?php }?>
+						<?php }?>
+					</tbody>
+				</table>
+				<?php } else{?>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Peer(per Team)(25%)</th>
+							<th>Team Leaders(30%)</th>
+							<th>Director(45%)</th>
+							<th>OverAll(100%)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php for($j=0; $j<$countmembers; $j++){ ?>
+							<?php if($user_id[$j]==$idOfClicked){ ?>
+								<tr>
+									<td><?php echo round($peer[$j], 2);?></td>
+									<td><?php echo round($leader[$j], 2);?></td>
+									<td><?php echo round($director[$j], 2);?></td>
+									<td class="text-error"><b><?php echo round($overall[$j], 2);?></b></td>
+								</tr>
+							<?php }?>
+						<?php }?>
+					</tbody>
+				</table>
+				<?php }?>
+				<hr><br/>
+
 				<img class="title-icons" src="<?php echo base_url('images/icons/svg/paper-bag.svg'); ?>" >
 				<h3 class="title">Work Competency</h3>
 				

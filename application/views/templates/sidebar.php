@@ -19,6 +19,7 @@
 				</a>
 			</li>
 
+			<?php if($role==3){?>
 			<li <?php if(   !empty($active_nav) && $active_nav ==  'RESULT'){ ?>class="active" <?php } else {?> class="inactive" <?php }?>>
 				<a style="text-decoration: none" href="<?php echo base_url('index.php/answer/results');?>">
 					<div class="sidebar-content">
@@ -27,6 +28,7 @@
 					</div>
 				</a>
 			</li>
+			<?php }?>
 		</ul>
 	</div>
 </div>

@@ -36,9 +36,9 @@
 						<?php }?>
 					</tbody>
 				</table>
+				<hr>
 				<?php } ?>
-					<?php if($countmembers){ ?>							
-							<hr>
+					<?php if($countmembers){ ?>
 							<img class="title-icons" src="<?php echo base_url('images/icons/svg/clipboard.svg'); ?>" >
 							<h3 class="title">Individuals</h3>
 							<table class="table table-striped">

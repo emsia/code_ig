@@ -23,7 +23,7 @@
 					<fieldset>
 						<div class="palette-orange">
 							<center>
-								<img class="title-icons" style="float: none; padding-bottom:3px; padding-top:5px; margin-right: -5px" src="<?php echo base_url('images/icons/png/mail.png');?>">
+								<img class="title-icons" style="float: none; padding-bottom:3px; padding-top:5px; margin-right: -5px" src="<?php echo base_url('images/icons/png/Mail.png');?>">
 			            		<div class="btn" style="text-shadow:none; background-color: #F39C12;"><b>You have been invited to join this team!</b></div>
 			            	</center>
 			         	</div>

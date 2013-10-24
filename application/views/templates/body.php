@@ -9,7 +9,7 @@
 						</a>
 						<ul class="nav pull-right">
 							<li>
-								<a href="<?php echo base_url('index.php/welcome/logout');?>">Logout</a>
+								<a href="<?php echo base_url('index.php/logout');?>">Logout</a>
 							</li>
 							<li class="active dropdown">
 								<a href="#" class="dropdown-toggle"><img class="avatar" src="<?php echo base_url('images/icons/png/user.png'); ?>" />

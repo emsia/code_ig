@@ -2,19 +2,17 @@
 
 class Welcome extends CI_Controller {
 
-	public function __construct()
-	{
+	public function __construct(){
 		parent::__construct();
-		$this->load->library(array('session', 'form_validation', 'session'));
+		$this->load->library(array('session', 'form_validation'));
 		$this->load->helper('url');
-		$this->load->model('user_model');
-
-		if ( $this->islogged() )
-			redirect('http://localhost/eupeval/index.php/home');
+		$this->load->model('user_model');		
 	}
 	
-	public function index( $data = Null )
-	{	
+	public function index( $data = Null ){	
+		if ( $this->islogged() ){
+			redirect('http://192.81.218.182/eupeval/index.php/home');
+		}
 		$data['title'] = "eUP Performance Evaluation | Login";
 		$this->load->view('templates/head', $data);
 		$this->load->view('templates/login');
@@ -30,7 +28,6 @@ class Welcome extends CI_Controller {
 	}
 	
 	public function signup(){
-		session_start();
 		$config = array(
 			array(
 				'field'   => 'lastName', 
@@ -76,8 +73,9 @@ class Welcome extends CI_Controller {
 		
 		if (empty($_SESSION['captcha']) || strtolower(trim($_REQUEST['captcha'])) != $_SESSION['captcha']) {
 			$captcha = FALSE;
-		}else
+		} else {
 			$captcha = TRUE;
+		}
 		
 		$this->form_validation->set_rules($config);
 		if ($this->form_validation->run() == FALSE && $captcha == FALSE ){
@@ -99,15 +97,15 @@ class Welcome extends CI_Controller {
 	}
 	
 	private function saltgen($max){
-			$characterList = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-			$i = 0;
-			$salt = "";
-			while ($i < $max) {
-				$salt .= $characterList{mt_rand(0, (strlen($characterList) - 1))};
-				$i++;
-			}
-			return $salt;
+		$characterList = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+		$i = 0;
+		$salt = "";
+		while ($i < $max) {
+			$salt .= $characterList{mt_rand(0, (strlen($characterList) - 1))};
+			$i++;
 		}
+		return $salt;
+	}
 	
 	 public function sendEmail($email){
 		$this->load->library('email');
@@ -126,7 +124,7 @@ class Welcome extends CI_Controller {
 		$validation = $this->user_model->setValidation($slug);
 		$this->log($validation['username'], $validation['role']);
 		//echo $validation['username']."<br/>";
-		redirect('http://localhost/eupeval/index.php/home');
+		redirect('http://192.81.218.182/eupeval/index.php/home');
 	}
 
 	public function loginSubmit(){
@@ -164,13 +162,15 @@ class Welcome extends CI_Controller {
 			
 			$result = $this->user_model->getuid($uname);
 			$this->log($uname,$result['role']);
-			redirect('http://localhost/eupeval/index.php/home');
+			redirect('http://192.81.218.182/eupeval/index.php/home');
 		}
 	}
 	
 	public function logout(){
 		$this->session->sess_destroy();
-		redirect('http://localhost/eupeval/');
+		session_unset();
+		session_destroy();
+		redirect('http://192.81.218.182/eupeval/');
 	}
 	
 	private function log($uname, $role){
@@ -179,7 +179,7 @@ class Welcome extends CI_Controller {
 		$this->session->set_userdata('role', $role);
 	}
 	
-	public function detals_of_users( ){
+	public function detals_of_users(){
 		$username = $this->session->userdata('username');
 		$name = $this->user_model->getName($username);
 		$data['firstname'] = $name['firstname'];

@@ -20,7 +20,7 @@
 				<div class="alert alert-error alert-block"><?php echo $errors; ?></div>
 			<?php }?>
 				Person To be Evaluated: <h3><?php echo$lastName.", ".$firstName." ".$middleName; ?></h3><br/>
-				<?php echo form_open('answer/submitEvalForm', $class); ?>
+				<?php echo form_open('answer/submit_evalform', $class); ?>
 				<input type="hidden" name="userToEvaluate" value="<?php echo $userToEvaluate; ?>" />
 				<center>
 					<p colspan="6"><b style="color:red">1</b>-POOR &nbsp; <b style="color:red">2</b>-NEEDS IMPROVEMENT &nbsp; <b style="color:red">3</b>-SATISFACTORY &nbsp; <b style="color:red">4</b>-VERY SATISFACTORY &nbsp; <b style="color:red">5</b>-OUTSTANDING</p>

@@ -24,14 +24,14 @@
 					  <?php echo $message; ?>
 					</div>
 				<?php }?>
-				<?php if($role==1 || $role==0){?>
+				<?php if($role==1 || $role==0 || $role==3){?>
 					<p class="pull-right">
 						<a href="#enter" role="button" data-toggle="modal" data-placement="left" title data-original-title="Enter a Team" class="btn btn-success"><i class="fui-gear"></i></a>
 						<a href="#inviteMem" role="button" data-toggle="modal" data-placement="left" title data-original-title="Invite a Member" class="btn btn-warning"><i class="fui-plus"></i></a>
 					</p>
 				<?php }else{?>
 					<p class="pull-right">
-						<a href="#myModal" role="button" data-toggle="modal" data-placement="left" title data-original-title="Enter a Group" class="btn btn-warning"><i class="fui-cmd"></i></a>
+						<a href="#memberEnter" role="button" data-toggle="modal" data-placement="left" title data-original-title="Enter a Team" class="btn btn-warning"><i class="fui-cmd"></i></a>
 					</p>
 				<?php }?>
 				<img class="title-icons" src="<?php echo base_url('images/icons/svg/clocks.svg'); ?>" >
@@ -87,7 +87,7 @@
 					  <?php echo $message; ?>
 					</div>
 				<?php }?>
-				<?php if($role==1 || $role==0){ ?>
+				<?php if($role==1 || $role==0 || $role==3){ ?>
 					<?php if($countOtherTeam){ ?>
 							<hr>
 							<h2 class="title">Leaders of Different Teams</h2>
@@ -190,6 +190,42 @@
 		</div>
 		<div class="modal-footer"> 
 			<button type="submit" name="gradesys-send"  class="btn btn-success pull-left" >Make Invitation <span class="fui-check"></span></button>
+			<button type="button" class="btn btn-warning" data-dismiss="modal" aria-hidden="true">Cancel <i class="fui-new"></i></button>
+		</div>
+	</div>
+	<?php echo form_close();?>
+
+	<?php $class = array('class'=>'form form-horizontal'); ?>
+	<?php echo form_open('answer/enterAsmember', $class);?>
+	<div id="memberEnter" class="modal hide fade" data-backdrop="static">
+		<div class="modal-header palette-orange">
+			<h3 class="text-white">Enter a Team</h3>
+		</div>
+		<div class="modal-body"><center>			
+			<?php if($teamCount){?>
+			<div class="control-group">
+				<label class="control-label" for="level">Team Name</label>
+				<div class="controls">
+					<select id="id_select" name="selectMember" class="select span12">
+						<?php for( $i=0; $i<$teamCount;$i++ ){?>
+							<option value="<?php echo $team_id[$i]?>"><?php echo $team_s[$i]?></option>
+						<?php }?>
+					</select>
+				</div>
+			</div>
+			<?php } else {?>
+				<span class="text-error">There are no Teams yet.</span>
+			<?php }?>
+			</center>
+			<div class="control-group">
+				<label class="control-label" for="level">Team Key</label>
+				<div class="controls">
+					<input type="text" name="team_key" class="input span12" />
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer"> 
+			<button type="submit" name="sendKey"  class="btn btn-success pull-left" >Enter <span class="fui-check"></span></button>
 			<button type="button" class="btn btn-warning" data-dismiss="modal" aria-hidden="true">Cancel <i class="fui-new"></i></button>
 		</div>
 	</div>

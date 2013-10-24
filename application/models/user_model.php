@@ -62,6 +62,11 @@ class User_model extends CI_Model {
 		return $query->result_array();
 	}
 	
+	function getTeamPass($team_id, $team_key){
+		$query = $this->db->get_where('team', array('id'=>$team_id, 'slug'=>$team_key) );
+		return $query->result_array();
+	}
+
 	function getAllUsers(){
 		$this->db->order_by('lastname', 'ASC');
 		$this->db->from('users');
@@ -103,7 +108,7 @@ class User_model extends CI_Model {
 		$query = $this->db->get('team');
 		return $query->result_array();
 	}
-
+	
 	function setValidation($ident){
 		$this->db->where('slug',$ident);
 		$this->db->update('users',array('verified' => 1));
