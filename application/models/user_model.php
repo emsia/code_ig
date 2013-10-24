@@ -103,6 +103,13 @@ class User_model extends CI_Model {
 		$query = $this->db->get('team');
 		return $query->result_array();
 	}
+
+	function setValidation($ident){
+		$this->db->where('slug',$ident);
+		$this->db->update('users',array('verified' => 1));
+		$query = $this->db->get_where('users',array('slug' => $ident));
+		return $query->row_array();
+	}
 	
 }
 ?>

@@ -8,12 +8,13 @@ class Welcome extends CI_Controller {
 		$this->load->library(array('session', 'form_validation', 'session'));
 		$this->load->helper('url');
 		$this->load->model('user_model');
+
+		if ( $this->islogged() )
+			redirect('http://localhost/eupeval/index.php/home');
 	}
 	
 	public function index( $data = Null )
 	{	
-		if ( $this->islogged() )
-			redirect('http://localhost/eupeval/index.php/home');
 		$data['title'] = "eUP Performance Evaluation | Login";
 		$this->load->view('templates/head', $data);
 		$this->load->view('templates/login');
@@ -120,7 +121,14 @@ class Welcome extends CI_Controller {
 		//echo $result;
 		return $data['key'];
 	 }
-	 
+	
+	public function activate($slug){
+		$validation = $this->user_model->setValidation($slug);
+		$this->log($validation['username'], $validation['role']);
+		//echo $validation['username']."<br/>";
+		redirect('http://localhost/eupeval/index.php/home');
+	}
+
 	public function loginSubmit(){
 		$config = array(
 			array(

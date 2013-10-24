@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "welcome";
+$route['default_controller'] = 'welcome';
 $route['home'] = 'answer/process';
 $route['answer/results'] = 'answer/results';
 $route['answer/FormEvaluate'] = 'answer/FormEvaluate';
@@ -49,3 +49,5 @@ $route['404_override'] = 'welcome/errors';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
+
+?>

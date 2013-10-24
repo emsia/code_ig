@@ -7,6 +7,9 @@ class Answer extends CI_Controller {
 		$this->load->library(array('session', 'form_validation'));
 		$this->load->helper(array('url', 'form'));
 		$this->load->model(array('user_model', 'FormSave'));
+
+		if ( !$this->islogged() )
+			redirect('http://localhost/eupeval/');
 	}
 	
 	public function results(){
@@ -144,6 +147,56 @@ class Answer extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 	
+	function sendInvites(){
+		$data = $this->getInfo();
+		$data['key'] = $_POST['key'];
+		$data['team_name'] = $_POST['team_name'];
+		$this->load->library('email');
+		$this->email->from('eupeval@gmail.com', 'eUP Admin');
+		$emails = $_POST['textArea'];
+		$this->email->to($emails);
+		$this->email->subject('Team Invitation | eUP Evaluation');
+		$this->email->message($this->load->view( 'evaluation/emailinvitation', $data, true ));
+		if( !$this->email->send() ) $this->people('Error Sending invitations', 0);
+		else $this->people('Sent Invitations', 1);
+	}
+
+	function inviteMember(){
+		$text = $_POST['textArea'];
+		$team_id = $_POST['selectId'];
+		$team_key = $this->user_model->getDataBase('team',$team_id, '','id');
+		$data = $this->getInfo();
+		$message='';
+		$data['countPeople']=0;
+		$arrays = preg_split('/[\s,]+/', $text);
+		//var_dump($arr); 'rules'   => 'required|valid_email|is_unique[users.email]'
+		foreach( $arrays as $array ){
+			$checker = $this->checkEmail($array);
+			if(!$checker){
+				$message = 'Invalid email addresses.';
+				break;
+			}
+			$data['countPeople']++;
+		}
+		if(empty($message)){
+			$b['emails'] = $arrays;
+			$b['key'] = $team_key[0]['slug'];
+			$b['team_name'] = $team_key[0]['team_name'];
+			$data['title'] = 'eUP Performance Evaluation | Invitation';
+			$data['active_nav'] = 'ANSWERFORM';
+			$this->load->view('templates/head', $data);
+			$this->load->view('templates/body');
+			$this->load->view('evaluation/invitation', $b);
+			$this->load->view('templates/footer');
+		}else $this->people($message, 0);
+	}
+
+	private function checkEmail($email){
+		$regex = '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/';
+		if (preg_match($regex, $email)) return 1;
+		else return 0;
+	}
+
 	function members( $old_tem_id, $myId ){
 		$list_of_members = $this->user_model->leadersMembersResults($old_tem_id);
 		$director_score = 0; $team_score = 0; $leader_score = 0; $director_count = 0; $team_count = 0; $leader_count = 0;
@@ -263,10 +316,11 @@ class Answer extends CI_Controller {
 		return;
 	}
 		
-	public function people($message=Null){
+	public function people($message=Null, $num=1){
 		$data = $this->getInfo();
 		$teams = $this->getTeams();
 		$data['teamCount'] = 0;
+		$data['success'] = $num;
 		foreach( $teams as $team ){
 			$data['team_s'][] = $team['team_name'];
 			$data['team_id'][] = $team['id'];
@@ -473,7 +527,8 @@ class Answer extends CI_Controller {
 		$data['firstname'] = $name['firstname'];
 		$data['lastname'] = $name['lastname'];
 		$data['middle'] = $name['middle'];
-		$data['user_id'] = $name['id'];		
+		$data['user_id'] = $name['id'];
+		$data['email'] = $name['email'];
 		$data['role'] = $name['role'];
 		return $data;
 	}

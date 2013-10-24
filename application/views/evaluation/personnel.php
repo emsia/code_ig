@@ -13,16 +13,21 @@
 		<div class="topliner">
 			<div class="content">
 				<?php if(!empty($message) && $count>=0){ ?>
-					<div class="alert alert-block alert-success">
+					<?php if($success){?><div class="alert alert-block alert-success">
 						<button type="button" class="close" data-dismiss="alert">&times;</button>
-					  <h4><strong>Success!</strong></h4>
+						<h4><strong>Success!</strong></h4>
+					<?php } else{?>
+					<div class="alert alert-block alert-error">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<h4><strong>Oooops!</strong></h4><?php }?>					
+					  
 					  <?php echo $message; ?>
 					</div>
 				<?php }?>
 				<?php if($role==1 || $role==0){?>
 					<p class="pull-right">
 						<a href="#enter" role="button" data-toggle="modal" data-placement="left" title data-original-title="Enter a Team" class="btn btn-success"><i class="fui-gear"></i></a>
-						<a href="#myModal" role="button" data-toggle="modal" data-placement="left" title data-original-title="Invite a Member" class="btn btn-warning"><i class="fui-plus"></i></a>
+						<a href="#inviteMem" role="button" data-toggle="modal" data-placement="left" title data-original-title="Invite a Member" class="btn btn-warning"><i class="fui-plus"></i></a>
 					</p>
 				<?php }else{?>
 					<p class="pull-right">
@@ -146,7 +151,45 @@
 		</div>
 		<div class="modal-footer">
 			<?php if($teamCount){ ?>
-			<button type="submit" name="sendTeamName"  class="btn btn-primary pull-left" >Enter <span class="fui-check"></span></button><?php }?>
+			<button type="submit" name="sendTeamName"  class="btn btn-success pull-left" >Enter <span class="fui-check"></span></button><?php }?>
+			<button type="button" class="btn btn-warning" data-dismiss="modal" aria-hidden="true">Cancel <i class="fui-new"></i></button>
+		</div>
+	</div>
+	<?php echo form_close();?>
+
+	<?php echo form_open('answer/inviteMember');?>
+	<div id="inviteMem" class="modal hide fade" data-backdrop="static">
+		<div class="modal-header palette-orange">
+			<h3 class="text-white">Make Invitation</h3>
+		</div>
+		<div class="modal-body">
+			<div class="control-group">
+				<label class="control-label"><p>Please seperate each person by comma. For example:</p></label>
+				<div class="controls">
+						<center><i>master@ittc.upd.edu.ph, member@yahoo.com</i></center><br/>
+						<textarea name="textArea" class="span3" rows="5"></textarea>
+					<br/>					
+					<?php if(!empty($message))?><p class="text-error"><?php echo $message; ?></p>
+				</div>		
+			</div>
+			<?php if($teamCount){?><br/>
+			<div class="control-group">
+				<label class="control-label" for="level">Team Name</label>
+				<div class="controls">
+					<select id="id_select" name="selectId" class="select span12">
+						<?php for( $i=0; $i<$teamCount;$i++ ){?>
+							<option value="<?php echo $team_id[$i]?>"><?php echo $team_s[$i]?></option>
+						<?php }?>
+					</select>
+				</div>
+			</div>
+			<?php } else {?>
+				<span class="text-error">There are no Teams yet.</span>
+			<?php }?>
+			<input type="hidden" id="cid" name="cid" value={{ studentList.id }} >
+		</div>
+		<div class="modal-footer"> 
+			<button type="submit" name="gradesys-send"  class="btn btn-success pull-left" >Make Invitation <span class="fui-check"></span></button>
 			<button type="button" class="btn btn-warning" data-dismiss="modal" aria-hidden="true">Cancel <i class="fui-new"></i></button>
 		</div>
 	</div>
