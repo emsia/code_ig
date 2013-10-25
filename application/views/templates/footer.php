@@ -1,4 +1,4 @@
-		<script src="<?php echo base_url('js/bootstrap.min.js'); ?>"></script>
+		
 		<script src="<?php echo base_url('js/bootstrap-select.js'); ?>"></script>
 		<script src="<?php echo base_url('js/bootstrap-switch.js'); ?>"></script>
 		<script src="<?php echo base_url('js/flatui-checkbox.js'); ?>"></script>

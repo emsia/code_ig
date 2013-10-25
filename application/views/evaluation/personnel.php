@@ -1,12 +1,20 @@
 <div class="row-fluid">
+	<link href="<?php echo base_url('css/bootstrap-datetimepicker.css') ?>" rel="stylesheet">
 	<script>
 	    $(function() {
 		    var tooltips = $( "[title]" ).tooltip();
 		    $(document)(function() {
 		    	tooltips.tooltip( "open" );
 		    })
-	    });
+	    });	    
 	</script>
+	<style>
+		.form_date.dropdown-menu {
+		  visibility: visible;
+		  opacity: 1;
+		  width: auto;
+		} 
+	</style>
 	<?php include_once($_SERVER['DOCUMENT_ROOT'] .'/eupeval/application/views/templates/sidebar.php')?>
 	<?php $this->load->helper('form'); ?>
 	<div class="span9">
@@ -26,6 +34,7 @@
 				<?php }?>
 				<?php if($role==0 || $role==3 || $role==4){?>
 					<p class="pull-right">
+						<a href="#startEval" role="button" data-toggle="modal" data-placement="left" title data-original-title="Start an Evaluation" class="btn btn-danger"><i class="fui-calendar-solid"></i></a>
 						<a href="#enter" role="button" data-toggle="modal" data-placement="left" title data-original-title="Enter a Team" class="btn btn-success"><i class="fui-gear"></i></a>
 						<a href="#inviteMem" role="button" data-toggle="modal" data-placement="left" title data-original-title="Invite a Member" class="btn btn-warning"><i class="fui-plus"></i></a>
 					</p>
@@ -141,7 +150,7 @@
 			<div class="control-group">
 				<label class="control-label" for="level">Team Name</label>
 				<div class="controls">
-					<select id="id_select" name="id_select[]" class="select span12" multiple>
+					<select id="id_select" name="id_select[]" class="select span12" rows="6" multiple>
 						<?php for( $i=0; $i<$teamCount;$i++ ){?>
 							<option value="<?php echo $team_id[$i]?>"><?php echo $team_s[$i]?></option>
 						<?php }?>
@@ -156,6 +165,27 @@
 		<div class="modal-footer">
 			<?php if($teamCount){ ?>
 			<button type="submit" name="sendTeamName"  class="btn btn-success pull-left" >Enter <span class="fui-check"></span></button><?php }?>
+			<button type="button" class="btn btn-warning" data-dismiss="modal" aria-hidden="true">Cancel <i class="fui-new"></i></button>
+		</div>
+	</div>
+	<?php echo form_close();?>
+
+	<?php $class = array('class' => 'form form-horizontal'); ?>
+	<?php echo form_open('answer/startEval', $class);?>
+	<div id="startEval" class="modal hide fade" data-backdrop="static">
+		<div class="modal-header palette-orange">
+			<h3 class="text-white">Start an Evaluation</h3>
+		</div>
+		<div class="modal-body">
+			<div class="control-group">
+				<label class="control-label">Ending Date</label>
+				<div class="controls">
+					<input type="text" class="span8 form_date" name="endDate" readonly />
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">			
+			<button type="submit" name="sendTeamName"  class="btn btn-success pull-left" >Start <span class="fui-check"></span></button>
 			<button type="button" class="btn btn-warning" data-dismiss="modal" aria-hidden="true">Cancel <i class="fui-new"></i></button>
 		</div>
 	</div>
@@ -235,4 +265,14 @@
 	</div>
 	<?php echo form_close();?>
 
+	<script src="<?php echo base_url(); ?>js/bootstrap-datetimepicker.js"></script>
+	
+	<script type="text/javascript">
+	    $(".form_date").datetimepicker({
+	    	format: "yyyy-m-dd",
+	        autoclose: true,
+	        todayBtn: true,
+	        minuteStep: 10
+    	});
+	</script>  
 </div>

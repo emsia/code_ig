@@ -47,7 +47,7 @@ class Welcome extends CI_Controller {
 			array(
 				'field'   => 'email', 
 				'label'   => 'email', 
-				'rules'   => 'required|valid_email|is_unique[users.email]'
+				'rules'   => 'required|valid_email'
             ),
 			array(
 				'field'   => 'username', 
