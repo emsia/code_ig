@@ -57,6 +57,7 @@ class User_model extends CI_Model {
 	}
 	
 	function getDataBase($tableName, $getId, $evaluator, $where_to_get){
+		$this->db->order_by($where_to_get, 'ASC');
 		if( empty($evaluator) ) $query = $this->db->get_where($tableName, array($where_to_get => $getId));
 		else	$query = $this->db->get_where($tableName, array($where_to_get => $getId, 'evaluator' => $evaluator));
 		return $query->result_array();
@@ -71,7 +72,7 @@ class User_model extends CI_Model {
 		/*$this->db->order_by('lastname', 'ASC');
 		$this->db->from('users');
 		$query = $this->db->get();*/
-		$sql = 'select * from users order by lastname ASC';
+		$sql = 'select * from users U order by U.lastname ASC';
 		$query = $this->db->query($sql);
 		return $query->result_array();
 	}

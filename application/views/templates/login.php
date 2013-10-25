@@ -13,7 +13,7 @@
 		<?php }?>
 		<?php if(empty($login)){ ?>
 		<?php echo form_open('welcome/loginSubmit');?>	
-          <div class="login-form">
+          <div class="login-form" style="margin-top: 55%">
 				<?php if (!empty($errors)){?>
 				<p class="text-error"><?php echo $errors ;?></p><br/>
 				<?php }?>
@@ -34,9 +34,9 @@
 		<?php echo form_close(); ?>
 		<?php } elseif( $login == 1 ){?>
 		</div>
-		<div class="signup-screen">
+		<div class="login-screen">
 		<?php echo form_open('welcome/signup');?>	
-		<div class="login-form" style="margin-top: 20%">				
+		<div class="login-form" style="margin-top: 35%">
 				<?php $this->form_validation->set_error_delimiters('<p class="text-error">', '</p>'); ?>
 				<?php if (!empty($errors)){?>
 				<p class="text-error"><?php echo $errors ;?></p><br/>
@@ -104,8 +104,10 @@
 		</div>
 		<?php echo form_close(); ?>
 		<?php } else{ ?>
-			<h1 class="text-white">Validation Sent!<br/></h1><p class="text-white">Please check your email for account confirmation.</p><br/>
-			<a href="<?php echo base_url('/'); ?>" class="btn btn-large btn-warning"><span class="fui-arrow-left"></span>Login</a>
+			<div style="margin-top: 35%">
+				<h1 class="text-white">Validation Sent!<br/></h1><p class="text-white">Please check your email for account confirmation.</p><br/>
+				<a href="<?php echo base_url('/'); ?>" class="btn btn-large btn-warning"><span class="fui-arrow-left"></span>Login</a>
+			</div>
 		<?php }?>
 			
         </div>

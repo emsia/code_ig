@@ -3631,7 +3631,7 @@ body.vjs-full-window {
 .login:before {
   content: '';
   display: inline-block;
-  height: 100%;
+  height: auto;
   vertical-align: middle;
   margin-right: -0.25em; /* Adjusts for spacing */
 }

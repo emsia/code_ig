@@ -24,10 +24,14 @@
 					  <?php echo $message; ?>
 					</div>
 				<?php }?>
-				<?php if($role==1 || $role==0 || $role==3 || $role==4){?>
+				<?php if($role==0 || $role==3 || $role==4){?>
 					<p class="pull-right">
 						<a href="#enter" role="button" data-toggle="modal" data-placement="left" title data-original-title="Enter a Team" class="btn btn-success"><i class="fui-gear"></i></a>
 						<a href="#inviteMem" role="button" data-toggle="modal" data-placement="left" title data-original-title="Invite a Member" class="btn btn-warning"><i class="fui-plus"></i></a>
+					</p>
+				<?php }elseif($role==1){ ?>
+					<p class="pull-right">
+						<a href="#enter" role="button" data-toggle="modal" data-placement="left" title data-original-title="Enter a Team" class="btn btn-success"><i class="fui-gear"></i></a>
 					</p>
 				<?php }else{?>
 					<p class="pull-right">

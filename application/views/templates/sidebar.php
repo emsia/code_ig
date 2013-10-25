@@ -29,6 +29,15 @@
 				</a>
 			</li>
 			<?php }?>
+
+			<li <?php if (   !empty($active_nav) && $active_nav == 'SETTINGS'){ ?>class="active" <?php } else {?> class="inactive" <?php }?>>
+				<a style="text-decoration: none" href="<?php echo base_url('index.php/settings/account');?>">
+					<div class="sidebar-content">
+						<div class="sidebar-icon fui-gear"></div>
+							SETTINGS
+					</div>
+				</a>
+			</li>
 		</ul>
 	</div>
 </div>

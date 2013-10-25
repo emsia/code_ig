@@ -5,7 +5,7 @@
 					<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#nav-collapse-01"></button>
 					<div class="nav-collapse collapse">
 						<a class="brand" href="<?php echo base_url('/'); ?>">
-							<img class="brand-logo " src="<?php echo base_url('images/icons/png/upitdc.jpg'); ?>" /> eUP: Performance Evaluation
+							<img class="brand-logo " src="<?php echo base_url('images/icons/eupLittle.png'); ?>" /> eUP: Performance Evaluation
 						</a>
 						<ul class="nav pull-right">
 							<li>

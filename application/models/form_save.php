@@ -68,5 +68,49 @@ class Form_save extends CI_Model {
 		$me = new welcome;
 		return $me->detals_of_users();
 	}
+
+	function getUserDetails($user_id){
+		$sql = "SELECT U.id as user_id, U.role, U.username, U.lastname, U.firstname, U.middle, U.email, U.password,
+				D.designation, D.date_hired, D.length_of_service, D.new_position, D.monetary_equivalent
+				FROM users U, user_details D
+				WHERE user_id=$user_id AND user_id=D.user_id";
+		$query = $this->db->query($sql);
+		return $query->row_array();
+	}
+
+	function save_password($user_id, $password){
+		$this->db->where('id',$user_id);
+		$this->db->update('users',array('password' => sha1($password)));
+	}
+
+	function save_details($user_id){
+		$this->db->where('id',$user_id);
+		$data = array(
+			'email' => $_POST['email'],
+			'username' => $_POST['username'],
+			'lastname' => $_POST['lastname'],
+			'firstname' => $_POST['firstname'],
+			'middle' => $_POST['middle']
+		);
+		$this->db->update('users',$data);
+
+		$details = $this->db->get_where('user_details', array('user_id' => $user_id));
+		$details = $details->result_array();
+
+		//var_dump($details);
+		$data = array(
+			'designation' => $_POST['designation'],
+			'date_hired' => $_POST['date_hired'],
+			'length_of_service' => $_POST['length_of_service'],
+			'new_position' => $_POST['new_position'],
+			'monetary_equivalent' => $_POST['monetary_equivalent'],
+			'user_id' => $user_id
+		);
+
+		if(!empty($details)){
+			$this->db->where('user_id',$user_id);
+			$this->db->update('user_details', $data);
+		} else $this->db->insert('user_details', $data);
+	}
 }	
 ?>
