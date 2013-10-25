@@ -68,9 +68,11 @@ class User_model extends CI_Model {
 	}
 
 	function getAllUsers(){
-		$this->db->order_by('lastname', 'ASC');
+		/*$this->db->order_by('lastname', 'ASC');
 		$this->db->from('users');
-		$query = $this->db->get();
+		$query = $this->db->get();*/
+		$sql = 'select * from users order by lastname ASC';
+		$query = $this->db->query($sql);
 		return $query->result_array();
 	}
 	
@@ -85,10 +87,10 @@ class User_model extends CI_Model {
 	}
 	
 	function leadersMembersResults($team_id){
-		$sql = "select distinct E.user_id, E.work_rate, E.behavior_rate, R.role as role_ev
+		$sql = "select distinct U.slug as user_id, E.work_rate, E.behavior_rate, R.role as role_ev
 					from evaluation_results E, users U, team T, team_member TM
 					join users R
-					where (TM.team_id=$team_id AND TM.user_id=E.user_id) AND R.id=E.evaluator order by E.user_id";
+					where (TM.team_id=$team_id AND TM.user_id=E.user_id AND E.user_id=U.id) AND R.id=E.evaluator order by E.user_id";
 		$query = $this->db->query($sql);
 		return $query->result_array();			
 	}

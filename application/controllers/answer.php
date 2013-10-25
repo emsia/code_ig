@@ -53,36 +53,38 @@ class Answer extends CI_Controller {
 		$data['count'] = 0; $data['countOtherTeam'] = 0;
 		$b = array(); $c = array();
 
-		if($data['role']==0 || $data['role']==3){
+		if($data['role']==0 || $data['role']==3 || $data['role']==4){
 			$all = $this->user_model->getAllUsers();
 			foreach( $all as $array_data ){
 				if( $array_data['id'] != $data['user_id'] ){
-					$OtherTeam = $this->user_model->getDataBase('team_member',$array_data['id'], '', 'user_id');					
-					$teamForm = $this->user_model->getDataBase('evaluation_results',$array_data['id'], $data['user_id'], 'user_id');
-					$teamName = $this->user_model->getDataBase('team',$OtherTeam[0]['team_id'], '', 'id');
-					
-					if($array_data['role']==1 || $array_data['role']==3){					
-						if( !empty($teamForm) ) $b['doneOther'][] = 1;
-						else $b['doneOther'][] = 0;
+					$OtherTeam = $this->user_model->getDataBase('team_member',$array_data['id'], '', 'user_id');
+					if( !empty($OtherTeam) ){
+						$teamForm = $this->user_model->getDataBase('evaluation_results',$array_data['id'], $data['user_id'], 'user_id');
+						$teamName = $this->user_model->getDataBase('team',$OtherTeam[0]['team_id'], '', 'id');
 						
-						$b['team_nameOther'][] = $teamName[0]['team_name'];
-						$b['lastnameOther'][] = $array_data['lastname'];
-						$b['firstnameOther'][] = $array_data['firstname'];
-						$b['middlenameOther'][] = $array_data['middle'];
-						$b['slugOther'][] = $array_data['slug'];
-						$data['countOtherTeam']++;
+						if($array_data['role']==1 || $array_data['role']==4){
+							if( !empty($teamForm) ) $b['doneOther'][] = 1;
+							else $b['doneOther'][] = 0;
+							
+							$b['team_nameOther'][] = $teamName[0]['team_name'];
+							$b['lastnameOther'][] = $array_data['lastname'];
+							$b['firstnameOther'][] = $array_data['firstname'];
+							$b['middlenameOther'][] = $array_data['middle'];
+							$b['slugOther'][] = $array_data['slug'];
+							$data['countOtherTeam']++;
+						}//endif
+						else{
+							if( !empty($teamForm) ) $b['done'][] = 1;
+							else $b['done'][] = 0;
+							
+							$b['team_name'][] = $teamName[0]['team_name'];
+							$b['lastname'][] = $array_data['lastname'];
+							$b['firstname'][] = $array_data['firstname'];
+							$b['middlename'][] = $array_data['middle'];
+							$b['slug'][] = $array_data['slug'];
+							$data['count']++;
+						}//end else
 					}//endif
-					else{
-						if( !empty($teamForm) ) $b['done'][] = 1;
-						else $b['done'][] = 0;
-						
-						$b['team_name'][] = $teamName[0]['team_name'];
-						$b['lastname'][] = $array_data['lastname'];
-						$b['firstname'][] = $array_data['firstname'];
-						$b['middlename'][] = $array_data['middle'];
-						$b['slug'][] = $array_data['slug'];
-						$data['count']++;
-					}//end else
 				}//end if
 			}//end foreach
 		}//end if
@@ -111,7 +113,7 @@ class Answer extends CI_Controller {
 					$team = $this->user_model->getDataBase('team_member',1, '', 'team_id');
 					foreach( $team as $array_data ){
 						$teamMembers = $this->user_model->getDataBase('users',$array_data['user_id'], '','id');
-						if( ($data['role']==1 && $teamMembers[0]['role']==1) || ($data['role']==3 && $teamMembers[0]['role']==3) ) continue;
+						if( ($data['role']==1 && $teamMembers[0]['role']==1) || ($data['role']==4 && $teamMembers[0]['role']==4) ) continue;
 						$teamForm = $this->user_model->getDataBase('evaluation_results',$teamMembers[0]['id'], $data['user_id'], 'user_id');
 						$teamName = $this->user_model->getDataBase('team',1, '', 'id');
 						if( !empty($teamForm) ) $b['done'][] = 1;
@@ -130,7 +132,7 @@ class Answer extends CI_Controller {
 					$team = $this->user_model->getDataBase('team_member',10, '', 'team_id');
 					foreach( $team as $array_data ){
 						$teamMembers = $this->user_model->getDataBase('users',$array_data['user_id'], '', 'id');
-						if( ($data['role']==1 && $teamMembers[0]['role']==1) || ($data['role']==3 && $teamMembers[0]['role']==3) ) continue;
+						if( ($data['role']==1 && $teamMembers[0]['role']==1) || ($data['role']==4 && $teamMembers[0]['role']==4) ) continue;
 						$teamForm = $this->user_model->getDataBase('evaluation_results',$teamMembers[0]['id'], $data['user_id'], 'user_id');
 						$teamName = $this->user_model->getDataBase('team',10, '', 'id');
 						if( !empty($teamForm) ) $b['done'][] = 1;
@@ -145,7 +147,7 @@ class Answer extends CI_Controller {
 					}//endforeach
 				}//endif
 
-				if( $data['role']==1 || $data['role']==3 ){
+				if( $data['role']==1 || $data['role']==4 ){
 					$teamLeaders = $this->user_model->getDataBase('users',1, '', 'role');
 					foreach( $teamLeaders as $array_data ){
 						if( $array_data['id'] != $data['user_id'] ){
@@ -320,11 +322,11 @@ class Answer extends CI_Controller {
 					$director_score /= $director_count;
 					$leader_score /= $leader_count;
 					
-					if( $old_role==1 || $old_role==3 ){
+					if( $old_role==1 || $old_role==4 ){
 						$team_score *= 0.2;
 						$leader_score *= 0.3;
 						$director_score *= 0.4;
-						$members = $this->members( $old_tem_id, $data['user_id'] );
+						$members = $this->members( $old_tem_id, $old_user_id );
 						$members *= 0.1;
 						
 						$b['user_idOther'][] = $old_user_id;
@@ -360,7 +362,7 @@ class Answer extends CI_Controller {
 				if( $data_users['role_ev']==0 ){
 					$director_score += (($data_users['work_rate'] + $data_users['behavior_rate'])/2);
 					$director_count++;
-				}else if( $data_users['role_ev']==1 || $data_users['role_ev']==3 ){
+				}else if( $data_users['role_ev']==1 || $data_users['role_ev']==4 ){
 					$leader_score += (($data_users['work_rate'] + $data_users['behavior_rate'])/2);
 					$leader_count++;
 				}else{
@@ -384,11 +386,11 @@ class Answer extends CI_Controller {
 			$director_score /= $director_count;
 			$leader_score /= $leader_count;
 			//echo $old_role;
-			if( $old_role==1 || $old_role==3){
+			if( $old_role==1 || $old_role==4 ){
 				$team_score *= 0.2;
 				$leader_score *= 0.3;
 				$director_score *= 0.4;
-				$members = $this->members( $old_tem_id, $data['user_id'] );
+				$members = $this->members( $old_tem_id, $old_user_id );
 				$members *= 0.1;
 				
 				$b['user_idOther'][] = $old_user_id;
@@ -462,7 +464,7 @@ class Answer extends CI_Controller {
 				if( $data_users['role_ev']==0 ){
 					$director_score += (($data_users['work_rate'] + $data_users['behavior_rate'])/2);
 					$director_count++;
-				}else if( $data_users['role_ev']==1 || $data_users['role_ev']==3){
+				}else if( $data_users['role_ev']==1 || $data_users['role_ev']==4){
 					$leader_score += (($data_users['work_rate'] + $data_users['behavior_rate'])/2);
 					$leader_count++;
 				}else{

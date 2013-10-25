@@ -17,7 +17,7 @@
 
 				<img class="title-icons" src="<?php echo base_url('images/icons/svg/map.svg'); ?>" >
 				<h3 class="title">Score Summary</h3>
-				<?php if($roleOfClicked==0 ||$roleOfClicked==1 || $roleOfClicked==3){?>
+				<?php if($roleOfClicked==0 ||$roleOfClicked==1 || $roleOfClicked==4){?>
 				<table class="table table-striped">
 					<thead>
 						<tr>
