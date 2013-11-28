@@ -8,18 +8,16 @@
 		    })
 	    });	    
 	</script>
-	<style>
-		.form_date.dropdown-menu {
-		  visibility: visible;
-		  opacity: 1;
-		  width: auto;
-		} 
-	</style>
 	<?php include_once($_SERVER['DOCUMENT_ROOT'] .'/eupeval/application/views/templates/sidebar.php')?>
 	<?php $this->load->helper('form'); ?>
 	<div class="span9">
 		<div class="topliner">
 			<div class="content">
+				<?php if($count>=0){ ?>
+					<div class="alert alert-block alert-success">
+						<b>Start Date: </b><?php echo $startDate;?> &nbsp; <b>End Date: </b><?php echo $endDate; ?>
+					</div>
+				<?php }?>
 				<?php if(!empty($message) && $count>=0){ ?>
 					<?php if($success){?><div class="alert alert-block alert-success">
 						<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -37,10 +35,6 @@
 						<a href="#startEval" role="button" data-toggle="modal" data-placement="left" title data-original-title="Start an Evaluation" class="btn btn-danger"><i class="fui-calendar-solid"></i></a>
 						<a href="#enter" role="button" data-toggle="modal" data-placement="left" title data-original-title="Enter a Team" class="btn btn-success"><i class="fui-gear"></i></a>
 						<a href="#inviteMem" role="button" data-toggle="modal" data-placement="left" title data-original-title="Invite a Member" class="btn btn-warning"><i class="fui-plus"></i></a>
-					</p>
-				<?php }elseif($role==1){ ?>
-					<p class="pull-right">
-						<a href="#enter" role="button" data-toggle="modal" data-placement="left" title data-original-title="Enter a Team" class="btn btn-success"><i class="fui-gear"></i></a>
 					</p>
 				<?php }else{?>
 					<p class="pull-right">
@@ -100,10 +94,10 @@
 					  <?php echo $message; ?>
 					</div>
 				<?php }?>
-				<?php if($role==1 || $role==0 || $role==3){ ?>
+				<?php if($role==1 || $role==0 || $role==3 || $role==4 || $role==5){ ?>
 					<?php if($countOtherTeam){ ?>
 							<hr>
-							<h2 class="title">Leaders of Different Teams</h2>
+							<h2 class="title">Leaders/Deputy of Different Teams</h2>
 							<table class="table table-striped">
 								<thead>
 									<tr>
@@ -180,7 +174,7 @@
 			<div class="control-group">
 				<label class="control-label">Ending Date</label>
 				<div class="controls">
-					<input type="text" class="span8 form_date" name="endDate" readonly />
+					<input type="text" class="span9 form_date" name="endDate" id="dateForm" readonly />
 				</div>
 			</div>
 		</div>
@@ -220,7 +214,6 @@
 			<?php } else {?>
 				<span class="text-error">There are no Teams yet.</span>
 			<?php }?>
-			<input type="hidden" id="cid" name="cid" value={{ studentList.id }} >
 		</div>
 		<div class="modal-footer"> 
 			<button type="submit" name="gradesys-send"  class="btn btn-success pull-left" >Make Invitation <span class="fui-check"></span></button>

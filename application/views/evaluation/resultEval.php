@@ -17,15 +17,15 @@
 
 				<img class="title-icons" src="<?php echo base_url('images/icons/svg/map.svg'); ?>" >
 				<h3 class="title">Score Summary</h3>
-				<?php if($roleOfClicked==0 ||$roleOfClicked==1 || $roleOfClicked==4){?>
+				<?php if($roleOfClicked==0 ||$roleOfClicked==1 || $roleOfClicked==4 || $roleOfClicked==5 || $roleOfClicked==6){?>
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th>Evaluation for Team Members(10%)</th>
-							<th>Team Members(20%)</th>
-							<th>Team Leaders(30%)</th>
-							<th>Director(40%)</th>
-							<th>OverAll(100%)</th>
+							<th>Evaluation for Team Members(x5)</th>
+							<th>Team Members(x1)</th>
+							<th>Team Leaders/Deputy(x3)</th>
+							<th>Director(x5)</th>
+							<th>OverAll</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -46,10 +46,11 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th>Peer(per Team)(25%)</th>
-							<th>Team Leaders(30%)</th>
-							<th>Director(45%)</th>
-							<th>OverAll(100%)</th>
+							<th><?php if($teamID==1 || $teamID==10){ ?>Evaluation for All Personnel(x1)<?php } else {?>Peer(per Team)(x1)<?php }?></th>
+							<th>Team Leaders/Deputy(x3)</th>
+							<th><span  data-placement="top" title data-original-title="Management Committee">MANCOM(x3)</th>
+							<th>Director(x5)</th>
+							<th>OverAll</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -58,6 +59,7 @@
 								<tr>
 									<td><?php echo round($peer[$j], 2);?></td>
 									<td><?php echo round($leader[$j], 2);?></td>
+									<td><?php echo round($manCom[$j], 2);?></td>
 									<td><?php echo round($director[$j], 2);?></td>
 									<td class="text-error"><b><?php echo round($overall[$j], 2);?></b></td>
 								</tr>

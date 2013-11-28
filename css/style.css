@@ -152,8 +152,9 @@ color: #ffffff;
 }
 
 .signup {
-  background-color: #f1c40f;
+  background-color: #F39C12;
   width: 100%;
+  height: inherit;
   position: absolute;
   text-align: center;
 }

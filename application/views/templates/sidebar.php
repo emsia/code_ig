@@ -19,7 +19,7 @@
 				</a>
 			</li>
 
-			<?php if($role==3 || $role==4){?>
+			<?php if($role==3 || $role==4 || $role==0){?>
 			<li <?php if(   !empty($active_nav) && $active_nav ==  'RESULT'){ ?>class="active" <?php } else {?> class="inactive" <?php }?>>
 				<a style="text-decoration: none" href="<?php echo base_url('index.php/answer/results');?>">
 					<div class="sidebar-content">
@@ -38,6 +38,17 @@
 					</div>
 				</a>
 			</li>
+
+			<?php if($role==3 || $role==4 || $role==0){?>
+			<li <?php if(   !empty($active_nav) && $active_nav ==  'TEAM'){ ?>class="active" <?php } else {?> class="inactive" <?php }?>>
+				<a style="text-decoration: none" href="<?php echo base_url('index.php/answer/TeamAll');?>">
+					<div class="sidebar-content">
+						<div class="sidebar-icon fui-eye"></div>
+							TEAMS
+					</div>
+				</a>
+			</li>
+			<?php }?>
 		</ul>
 	</div>
 </div>

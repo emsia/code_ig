@@ -19,7 +19,7 @@
 				</div>
 				
 				<?php $class=array('class'=>'form form-horizontal'); ?>
-				<?php echo form_open('answer/sendInvites', $class);?>
+				<?php if(!$teams) { echo form_open('answer/sendInvites', $class); } else{ echo form_open('teams/sendInvites', $class); }?>
 					<fieldset>
 						<div class="palette-orange">
 							<center>

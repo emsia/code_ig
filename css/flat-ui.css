@@ -3934,3 +3934,8 @@ body.vjs-full-window {
   opacity: 1;
   width: auto;
 } 
+
+.datetimepicker
+{
+    display: none;
+}

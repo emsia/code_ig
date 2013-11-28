@@ -47,13 +47,13 @@
 						<table class="table table-bordered table-striped">
 							<thead>
 									<tr><th style="width: 60%">ITEM</th>
-									<th style="width: 40%">Percentage (%)</th><tr>
+									<th style="width: 40%">Weights</th><tr>
 							</thead>
 							<tbody>
-									<tr><td>Peer (Per team)</td><td>25%</td></tr>
-									<tr><td>Team Leader/Dep Team Leader</td><td>30%</td></tr>
-									<tr><td>Director</td><td>45%</td></tr>
-									<tr><td><b>Total</b></td><td><b>100%</b></td></tr>
+									<tr><td>Peer (Per team)</td><td>1</td></tr>
+									<tr><td>Team Leader/Dep Team Leader</td><td>3</td></tr>
+									<tr><td>Management Committee</td><td>3</td></tr>
+									<tr><td>Director</td><td>5</td></tr>
 							</tbody>
 						</table>
 					</li>
@@ -61,14 +61,13 @@
 						<table class="table table-bordered table-striped">
 							<thead>
 									<tr><th style="width: 60%">ITEM</th>
-									<th style="width: 40%">Percentage (%)</th><tr>
+									<th style="width: 40%">Weights</th><tr>
 							</thead>
 							<tbody>
-									<tr><td>Result of evaluation of Members</td><td>10%</td></tr>
-									<tr><td>Director</td><td>40%</td></tr>
-									<tr><td>Team Leaders/ Dep Team Leaders</td><td>30%</td></tr>
-									<tr><td>Team Members</td><td>20%</td></tr>
-									<tr><td><b>Total</b></td><td><b>100%</b></td></tr>
+									<tr><td>Result of evaluation of Members</td><td>5</td></tr>
+									<tr><td>Director</td><td>5</td></tr>
+									<tr><td>Team Leaders/ Dep Team Leaders</td><td>3</td></tr>
+									<tr><td>Team Members</td><td>1</td></tr>
 							</tbody>
 						</table>
 					</li>

@@ -10,7 +10,8 @@ class Form_save extends CI_Model {
 	}
 	
 	function saveForms($names, $user_id){
-		$date = date('Y-m-d G:i:s');;
+		//$date = date('Y-m-d G:i:s');;
+		$date = date('Y-m-d');
 		$evaluator = $this->getUid();
 		$totalWC = 0; $totalBC = 0;
 		
@@ -70,10 +71,10 @@ class Form_save extends CI_Model {
 	}
 
 	function getUserDetails($user_id){
-		$sql = "SELECT U.id as user_id, U.role, U.username, U.lastname, U.firstname, U.middle, U.email, U.password,
+		$sql = "SELECT distinct U.id as user_id, U.role, U.username, U.lastname, U.firstname, U.middle, U.email, U.password,
 				D.designation, D.date_hired, D.length_of_service, D.new_position, D.monetary_equivalent
 				FROM users U, user_details D
-				WHERE user_id=$user_id AND user_id=D.user_id";
+				WHERE U.id=$user_id AND U.id=D.user_id";
 		$query = $this->db->query($sql);
 		return $query->row_array();
 	}
@@ -93,24 +94,22 @@ class Form_save extends CI_Model {
 			'middle' => $_POST['middle']
 		);
 		$this->db->update('users',$data);
+	}
 
-		$details = $this->db->get_where('user_details', array('user_id' => $user_id));
-		$details = $details->result_array();
+	function updater($tableName, $col1, $val1, $col2, $val2){
+		$this->db->where($col1, $val1);
+		$this->db->update($tableName, array($col2 => $val2));
+	}
 
-		//var_dump($details);
+	function addTeam($table, $val1, $val2, $val3){
 		$data = array(
-			'designation' => $_POST['designation'],
-			'date_hired' => $_POST['date_hired'],
-			'length_of_service' => $_POST['length_of_service'],
-			'new_position' => $_POST['new_position'],
-			'monetary_equivalent' => $_POST['monetary_equivalent'],
-			'user_id' => $user_id
+			'slug' => $val3,
+			'team_name' => $val1,
+			'short_name' => $val2
 		);
 
-		if(!empty($details)){
-			$this->db->where('user_id',$user_id);
-			$this->db->update('user_details', $data);
-		} else $this->db->insert('user_details', $data);
+		$this->db->insert($table, $data);
 	}
+
 }	
 ?>

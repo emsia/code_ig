@@ -1,0 +1,85 @@
+@CHARSET "ISO-8859-1";
+
+
+body{
+height: 100%; 
+width: 100%;
+}
+  
+div.date{
+font-family: arial;
+font-size: 10pt;
+margin-left: 5in;
+}
+
+div.head{
+font-family: arial;
+text-align: center;
+font-size: 12pt;
+font-weight: bold;
+}
+
+div.title{
+font-family: arial;
+text-align: center;
+font-size: 13pt;
+font-weight: bold;
+color: red;
+}
+
+div.title2{
+font-family: arial;
+text-align: center;
+font-size: 10pt;
+font-weight: bold;
+color: red;
+}
+
+div.content{
+font-family: arial;
+font-size: 10pt;
+font-weight: bold;
+margin-left: 0.5in;
+margin-right: 0.5in;
+padding-bottom: 1in;
+}
+
+div.signature{
+position: absolute;
+padding-top: 2in; 
+right:1in;
+text-align: center;
+}
+
+div.output{
+font-family: arial;
+font-size: 12pt;
+text-align: center;
+}
+
+p.certcontent{
+text-align:justify;
+}
+
+.name{
+font-family: arial;
+font-size: 13pt;
+font-weight: bold;
+}
+
+.position{
+font-family: arial;
+font-size: 12pt;
+}
+
+img.footer{
+width: 8.5in;
+height: 2in;
+position: absolute;
+}
+
+img.header{
+width: 8.5in;
+height: 2in;
+position: absolute;
+}

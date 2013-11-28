@@ -1,4 +1,8 @@
-	<div class="login">
+	<?php if(empty($login) || $login==2){ ?>
+		<div class="login">
+	<?php }else{ ?>
+		<div class="signup">
+	<?php }?>
 	<style>
 		.cap{
 			text-transform: capitalize;
@@ -28,12 +32,13 @@
 				</div>
 
 				<button type="submit" class="btn btn-warning btn-block" >Login</button>
-				<a class="login-link" href="#" style="text-decoration: none">Forgot your password?</a>
+				<a class="login-link" href="<?php echo base_url('index.php/welcome/forgotPass'); ?>" style="text-decoration: none">Forgot your password?</a>
 				<a class="login-link" href="<?php echo base_url('index.php/welcome/signupForm'); ?>" style="text-decoration: none">Not Yet Member?</a>
 			</div>
 		<?php echo form_close(); ?>
-		<?php } elseif( $login == 1 ){?>
 		</div>
+
+		<?php } elseif( $login == 1 ){?>
 		<div class="login-screen">
 		<?php echo form_open('welcome/signup');?>	
 		<div class="login-form" style="margin-top: 35%">

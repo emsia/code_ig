@@ -40,12 +40,15 @@
 
 $route['default_controller'] = 'welcome';
 $route['home'] = 'answer/process';
+$route['teams'] = 'teams';
 $route['answer/results'] = 'answer/results';
 $route['settings/account'] = 'settings/account';
 $route['answer/FormEvaluate'] = 'answer/FormEvaluate';
 $route['answer/submit_evalform'] = 'answer/submit_evalform';
 $route['answer/people'] = 'answer/people';
 $route['answer/process'] = 'answer/process';
+$route['teams/eachMember'] = 'teams/eachMember';
+$route['teams/inviteMember'] = 'teams/inviteMember';
 $route['404_override'] = 'welcome/errors';
 $route['logout'] = 'welcome/logout';
 

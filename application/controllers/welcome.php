@@ -47,7 +47,7 @@ class Welcome extends CI_Controller {
 			array(
 				'field'   => 'email', 
 				'label'   => 'email', 
-				'rules'   => 'required|valid_email'
+				'rules'   => 'required|valid_email | is_unique[users.email]'
             ),
 			array(
 				'field'   => 'username', 
@@ -194,4 +194,41 @@ class Welcome extends CI_Controller {
 		$this->load->view('templates/head', $data);
 		$this->load->view('templates/errors');
 	}
+	
+	public function forgotPass($message=Null, $success=0){
+		$data['message'] = $message;
+		$data['success']=$success;
+		$data['title'] = 'eUP Performance Evaluation | Forgot Password';
+		$this->load->view('templates/head', $data);
+		$this->load->view('templates/forgotPass');
+	}
+	
+	public function sendPass(){
+		$config = array(
+			array(
+				'field'   => 'credentials', 
+				'label'   => 'Email', 
+				'rules'   => 'required|valid_email'
+            )
+        );
+		$this->form_validation->set_rules($config);
+		if ($this->form_validation->run() == FALSE){
+			$this->forgotPass();
+			return;
+		}
+		
+		$slug = $this->saltgen(25);
+		$result = $this->user_model->checkExistence($slug);
+		if(!$result){
+			$this->forgotPass('Invalid Email Address', 0);
+		}
+		$this->forgotPass('Please check you email for instruction.', 1);
+	}
+	
+	public function setRe($slug=Null){
+		$result = $this->user_model->setValidation($slug);
+		$this->log($result['username'], $result['role']);
+		redirect('http://192.81.218.182/eupeval/index.php/settings/account');
+	}
+		
 }

@@ -52,61 +52,61 @@
 					<div class="control-group">
 						<label class="control-label" for="level">User Name</label>
 						<div class="controls">
-							<input class="span8" type="text" placeholder="Required" name='username' value='<?php if(!empty($username)) echo $username?>' />
+							<input class="span9" type="text" placeholder="Required" name='username' value='<?php if(!empty($username)) echo $username?>' />
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="level">Email</label>
 						<div class="controls">
-							<input class="span8" style="color: #F39C12" placeholder="Required" type="text" name='email' value='<?php if(!empty($email)) echo $email?>' />
+							<input class="span9" style="color: #F39C12" placeholder="Required" type="text" name='email' value='<?php if(!empty($email)) echo $email?>' />
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="level">Last Name</label>
 						<div class="controls">
-							<input class="span8" type="text" style="color: #F39C12" placeholder="Required" name='lastname' value='<?php if(!empty($lastname)) echo $lastname?>' />
+							<input class="span9" type="text" style="color: #F39C12" placeholder="Required" name='lastname' value='<?php if(!empty($lastname)) echo $lastname?>' />
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="level">First Name</label>
 						<div class="controls">
-							<input class="span8" type="text" style="color: #F39C12" placeholder="Required" name='firstname' value='<?php if(!empty($firstname)) echo $firstname?>' />
+							<input class="span9" type="text" style="color: #F39C12" placeholder="Required" name='firstname' value='<?php if(!empty($firstname)) echo $firstname?>' />
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="level">Middle Name</label>
 						<div class="controls">
-							<input class="span8" type="text" style="color: #F39C12" placeholder="Required" name='middle' value='<?php if(!empty($middle)) echo $middle?>' />
+							<input class="span9" type="text" style="color: #F39C12" placeholder="Required" name='middle' value='<?php if(!empty($middle)) echo $middle?>' />
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="level">Designation</label>
 						<div class="controls">
-							<input class="span8" type="text" placeholder="Optional" name='designation' value='<?php if(!empty($designation)) echo $designation; ?>' />
+							<input class="span9" type="text" readonly name='designation' placeholder="To be filled by Admin" value='<?php if(!empty($designation)) echo $designation; ?>' />
 						</div>
 					</div>
 					<div class="control-group" >
 						<label class="control-label"for="level">Date Hired</label>
 						<div class="controls">
-						    <input class="span8 pick" type="date" name="date_hired" value="<?php echo set_value('date_hired');?>" />
+						    <input class="span9 pick" type="text" placeholder="To be filled by Admin" name="date_hired" value="<?php if(!empty($date_hired)) echo $date_hired; ?>" readonly />
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="level">Length of Service</label>
 						<div class="controls">
-							<input class="span8" type="text" placeholder="Optional" name='length_of_service' value='<?php if(!empty($length_of_service)) echo $length_of_service; ?>' />
+							<input class="span9" type="text" readonly placeholder="To be filled by Admin" name='length_of_service' value='<?php if(!empty($length_of_service)) echo $length_of_service; ?>' />
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="level">New Position</label>
 						<div class="controls">
-							<input class="span8" type="text" placeholder="Optional" name='new_position' value='<?php if(!empty($new_position)) echo $new_position; ?>' />
+							<input class="span9" placeholder="To be filled by Admin" type="text" readonly name='new_position' value='<?php if(!empty($new_position)) echo $new_position; ?>' />
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="level">Monetary Equivalent</label>
 						<div class="controls">
-							<input class="span8" type="text" placeholder="Optional" name='monetary_equivalent' value='<?php if(!empty($monetary_equivalent)) echo $monetary_equivalent; ?>' />
+							<input class="span9" type="text" placeholder="To be filled by Admin" readonly name='monetary_equivalent' value='<?php if(!empty($monetary_equivalent)) echo $monetary_equivalent; ?>' />
 						</div>
 					</div>
 					<hr>
@@ -126,7 +126,7 @@
 						<div class="controls">
 							<input type="hidden" name='old' value="<?php echo $password; ?>" />
 							<input type="hidden" name='user_id' value="<?php echo $user_id; ?>" />
-							<input class="span8" type="password" placeholder="Enter your old Password" name='old_password' value='' />
+							<input class="span9" type="password" placeholder="Enter your old Password" name='old_password' value='' />
 							<?php if(form_error('old_password') !== ''){ ?>
 								<?php echo form_error('old_password'); ?>
 							<?php }?>
@@ -135,7 +135,7 @@
 					<div class="control-group">
 						<label class="control-label" for="level">New Password</label>
 						<div class="controls">
-							<input class="span8" type="password" placeholder="Required" name='new_password' value='' />
+							<input class="span9" type="password" placeholder="Required" name='new_password' value='' />
 							<?php if(form_error('new_password') !== ''){ ?>
 								<?php echo form_error('new_password'); ?>
 							<?php }?>
@@ -144,7 +144,7 @@
 					<div class="control-group">
 						<label class="control-label" for="level">Confirm Password</label>
 						<div class="controls">
-							<input class="span8" type="password" placeholder="Required" name='conf_password' value='' />
+							<input class="span9" type="password" placeholder="Required" name='conf_password' value='' />
 							<?php if(form_error('conf_password') !== ''){ ?>
 								<?php echo form_error('conf_password'); ?>
 							<?php }?>

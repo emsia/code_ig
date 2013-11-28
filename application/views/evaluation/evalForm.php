@@ -23,7 +23,7 @@
 				<?php echo form_open('answer/submit_evalform', $class); ?>
 				<input type="hidden" name="userToEvaluate" value="<?php echo $userToEvaluate; ?>" />
 				<center>
-					<p colspan="6"><b style="color:red">1</b>-POOR &nbsp; <b style="color:red">2</b>-NEEDS IMPROVEMENT &nbsp; <b style="color:red">3</b>-SATISFACTORY &nbsp; <b style="color:red">4</b>-VERY SATISFACTORY &nbsp; <b style="color:red">5</b>-OUTSTANDING</p>
+					<p colspan="6"><b style="color:red">1</b>-POOR &nbsp; <b style="color:red">2</b>-NEEDS IMPROVEMENT &nbsp; <b style="color:red">3</b>-SATISFACTORY &nbsp; <b style="color:red">4</b>-VERY SATISFACTORY &nbsp; <b style="color:red"><br/>5</b>-OUTSTANDING</p>
 				</center>	
 					
 					<hr>

@@ -13,6 +13,7 @@ class Settings extends CI_Controller {
 	}
 
 	public function account($message=Null, $success=1){
+		$data = array();
 		$data = $this->getInfo();
 		$c = $this->form_save->getUserDetails($data['user_id']);
 		//var_dump($c);
